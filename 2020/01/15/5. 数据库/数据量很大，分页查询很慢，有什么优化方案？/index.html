@@ -1,0 +1,215 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>数据库优化 | BestBear</title><meta name="description" content="数据库优化"><meta name="keywords" content="数据库"><meta name="author" content="简凡丶"><meta name="copyright" content="简凡丶"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="数据库优化"><meta name="twitter:description" content="数据库优化"><meta name="twitter:image" content="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg"><meta property="og:type" content="article"><meta property="og:title" content="数据库优化"><meta property="og:url" content="http://yoursite.com/2020/01/15/5.%20%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9F/"><meta property="og:site_name" content="BestBear"><meta property="og:description" content="数据库优化"><meta property="og:image" content="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://yoursite.com/2020/01/15/5.%20%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9F/"><link rel="prev" title="网络相关基础" href="http://yoursite.com/2020/01/15/1.%20Java%E5%9F%BA%E7%A1%80/Synchronized%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/"><link rel="next" title="分布式Id" href="http://yoursite.com/2020/01/15/7.%20%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8FId/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: false,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">BestBear</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/01/13/ViKAkpCRr5xde1j.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">30</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">13</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#准备工作"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">准备工作</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#一般分页查询"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">一般分页查询</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#使用子查询优化"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">使用子查询优化</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#使用-id-限定优化"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">使用 id 限定优化</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#使用临时表优化"><span class="toc_mobile_items-number">5.</span> <span class="toc_mobile_items-text">使用临时表优化</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#关于数据表的id说明"><span class="toc_mobile_items-number">6.</span> <span class="toc_mobile_items-text">关于数据表的id说明</span></a></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#准备工作"><span class="toc-number">1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#一般分页查询"><span class="toc-number">2.</span> <span class="toc-text">一般分页查询</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用子查询优化"><span class="toc-number">3.</span> <span class="toc-text">使用子查询优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用-id-限定优化"><span class="toc-number">4.</span> <span class="toc-text">使用 id 限定优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#使用临时表优化"><span class="toc-number">5.</span> <span class="toc-text">使用临时表优化</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#关于数据表的id说明"><span class="toc-number">6.</span> <span class="toc-text">关于数据表的id说明</span></a></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">数据库优化</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-01-15<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2021-10-23</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">2.2k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 7 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><ul>
+<li>准备工作</li>
+<li>一般分页查询</li>
+<li>使用子查询优化</li>
+<li>使用 id 限定优化</li>
+<li>使用临时表优化</li>
+<li>关于数据表的id说明</li>
+</ul>
+<hr>
+<p>当需要从数据库查询的表有上万条记录的时候，一次性查询所有结果会变得很慢，特别是随着数据量的增加特别明显，这时需要使用分页查询。对于数据库分页查询，也有很多种方法和优化的点。下面简单说一下我知道的一些方法。</p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>为了对下面列举的一些优化进行测试，下面针对已有的一张表进行说明。</p>
+<ul>
+<li>表名：order_history</li>
+<li>描述：某个业务的订单历史表</li>
+<li>主要字段：unsigned int id，tinyint(4) int type</li>
+<li>字段情况：该表一共37个字段，不包含text等大型数据，最大为varchar(500)，id字段为索引，且为递增。</li>
+<li>数据量：5709294</li>
+<li>MySQL版本：5.7.16 线下找一张百万级的测试表可不容易，如果需要自己测试的话，可以写shell脚本什么的插入数据进行测试。以下的 sql 所有语句执行的环境没有发生改变，下面是基本测试结果：</li>
+</ul>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from orders_history;</span><br></pre></td></tr></table></figure></div>
+
+<p>返回结果：5709294</p>
+<p>三次查询时间分别为：</p>
+<ul>
+<li>8903 ms</li>
+<li>8323 ms</li>
+<li>8401 ms</li>
+</ul>
+<h1 id="一般分页查询"><a href="#一般分页查询" class="headerlink" title="一般分页查询"></a>一般分页查询</h1><p>一般的分页查询使用简单的 limit 子句就可以实现。limit 子句声明如下：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table LIMIT [offset,] rows | rows OFFSET offset</span><br></pre></td></tr></table></figure></div>
+
+<p>LIMIT 子句可以被用于指定 SELECT 语句返回的记录数。需注意以下几点：</p>
+<ul>
+<li>第一个参数指定第一个返回记录行的偏移量，注意从<code>0</code>开始</li>
+<li>第二个参数指定返回记录行的最大数目</li>
+<li>如果只给定一个参数：它表示返回最大的记录行数目</li>
+<li>第二个参数为 -1 表示检索从某一个偏移量到记录集的结束所有的记录行</li>
+<li>初始记录行的偏移量是 0(而不是 1)</li>
+</ul>
+<p>下面是一个应用实例：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;8 limit 1000,10;</span><br></pre></td></tr></table></figure></div>
+
+<p>该条语句将会从表 orders_history 中查询<code>offset: 1000</code>开始之后的10条数据，也就是第1001条到第1010条数据（<code>1001 &lt;= id &lt;= 1010</code>）。</p>
+<p>数据表中的记录默认使用主键（一般为id）排序，上面的结果相当于：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;8 order by id limit 10000,10;</span><br></pre></td></tr></table></figure></div>
+
+<p>三次查询时间分别为：</p>
+<ul>
+<li>3040 ms</li>
+<li>3063 ms</li>
+<li>3018 ms</li>
+</ul>
+<p>针对这种查询方式，下面测试查询记录量对时间的影响：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;8 limit 10000,1;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 10000,10;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 10000,100;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 10000,1000;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 10000,10000;</span><br></pre></td></tr></table></figure></div>
+
+<p>三次查询时间如下：</p>
+<ul>
+<li>查询1条记录：3072ms 3092ms 3002ms</li>
+<li>查询10条记录：3081ms 3077ms 3032ms</li>
+<li>查询100条记录：3118ms 3200ms 3128ms</li>
+<li>查询1000条记录：3412ms 3468ms 3394ms</li>
+<li>查询10000条记录：3749ms 3802ms 3696ms</li>
+</ul>
+<p>另外我还做了十来次查询，从查询时间来看，基本可以确定，在查询记录量低于100时，查询时间基本没有差距，随着查询记录量越来越大，所花费的时间也会越来越多。</p>
+<p>针对查询偏移量的测试：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;8 limit 100,100;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 1000,100;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 10000,100;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 100000,100;</span><br><span class="line">select * from orders_history where type&#x3D;8 limit 1000000,100;</span><br></pre></td></tr></table></figure></div>
+
+<p>三次查询时间如下：</p>
+<ul>
+<li>查询100偏移：25ms 24ms 24ms</li>
+<li>查询1000偏移：78ms 76ms 77ms</li>
+<li>查询10000偏移：3092ms 3212ms 3128ms</li>
+<li>查询100000偏移：3878ms 3812ms 3798ms</li>
+<li>查询1000000偏移：14608ms 14062ms 14700ms</li>
+</ul>
+<p>随着查询偏移的增大，尤其查询偏移大于10万以后，查询时间急剧增加。</p>
+<p><strong>这种分页查询方式会从数据库第一条记录开始扫描，所以越往后，查询速度越慢，而且查询的数据越多，也会拖慢总查询速度。</strong></p>
+<h1 id="使用子查询优化"><a href="#使用子查询优化" class="headerlink" title="使用子查询优化"></a>使用子查询优化</h1><p>这种方式先定位偏移位置的 id，然后往后查询，这种方式适用于 id 递增的情况。</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;8 limit 100000,1;</span><br><span class="line"></span><br><span class="line">select id from orders_history where type&#x3D;8 limit 100000,1;</span><br><span class="line"></span><br><span class="line">select * from orders_history where type&#x3D;8 and</span><br><span class="line">id&gt;&#x3D;(select id from orders_history where type&#x3D;8 limit 100000,1)</span><br><span class="line">limit 100;</span><br><span class="line"></span><br><span class="line">select * from orders_history where type&#x3D;8 limit 100000,100;</span><br></pre></td></tr></table></figure></div>
+
+<p>4条语句的查询时间如下：</p>
+<ul>
+<li>第1条语句：3674ms</li>
+<li>第2条语句：1315ms</li>
+<li>第3条语句：1327ms</li>
+<li>第4条语句：3710ms</li>
+</ul>
+<p>针对上面的查询需要注意：</p>
+<ul>
+<li>比较第1条语句和第2条语句：使用 select id 代替 select * 速度增加了3倍</li>
+<li>比较第2条语句和第3条语句：速度相差几十毫秒</li>
+<li>比较第3条语句和第4条语句：得益于 select id 速度增加，第3条语句查询速度增加了3倍</li>
+</ul>
+<p>这种方式相较于原始一般的查询方法，将会增快数倍。</p>
+<h1 id="使用-id-限定优化"><a href="#使用-id-限定优化" class="headerlink" title="使用 id 限定优化"></a>使用 id 限定优化</h1><p>这种方式假设数据表的id是<strong>连续递增</strong>的，则我们根据查询的页数和查询的记录数可以算出查询的id的范围，可以使用 id between and 来查询：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where type&#x3D;2</span><br><span class="line">and id between 1000000 and 1000100 limit 100;</span><br></pre></td></tr></table></figure></div>
+
+<p>查询时间：15ms 12ms 9ms</p>
+<p>这种查询方式能够极大地优化查询速度，基本能够在几十毫秒之内完成。限制是只能使用于明确知道id的情况，不过一般建立表的时候，都会添加基本的id字段，这为分页查询带来很多便利。</p>
+<p>还可以有另外一种写法：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where id &gt;&#x3D; 1000001 limit 100;</span><br></pre></td></tr></table></figure></div>
+
+<p>当然还可以使用 in 的方式来进行查询，这种方式经常用在多表关联的时候进行查询，使用其他表查询的id集合，来进行查询：</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">select * from orders_history where id in</span><br><span class="line">(select order_id from trade_2 where goods &#x3D; &#39;pen&#39;)</span><br><span class="line">limit 100;</span><br></pre></td></tr></table></figure></div>
+
+<p>这种 in 查询的方式要注意：某些 mysql 版本不支持在 in 子句中使用 limit。</p>
+<h1 id="使用临时表优化"><a href="#使用临时表优化" class="headerlink" title="使用临时表优化"></a>使用临时表优化</h1><p>这种方式已经不属于查询优化，这儿附带提一下。</p>
+<p>对于使用 id 限定优化中的问题，需要 id 是连续递增的，但是在一些场景下，比如使用历史表的时候，或者出现过数据缺失问题时，可以考虑使用临时存储的表来记录分页的id，使用分页的id来进行 in 查询。这样能够极大的提高传统的分页查询速度，尤其是数据量上千万的时候。</p>
+<h1 id="关于数据表的id说明"><a href="#关于数据表的id说明" class="headerlink" title="关于数据表的id说明"></a>关于数据表的id说明</h1><p>一般情况下，在数据库中建立表的时候，强制为每一张表添加 id 递增字段，这样方便查询。</p>
+<p>如果像是订单库等数据量非常庞大，一般会进行分库分表。这个时候不建议使用数据库的 id 作为唯一标识，而应该使用分布式的高并发唯一 id 生成器来生成，并在数据表中使用另外的字段来存储这个唯一标识。</p>
+<p>使用先使用范围查询定位 id （或者索引），然后再使用索引进行定位数据，能够提高好几倍查询速度。即先 select id，然后再 select *；</p>
+<p>本人才疏学浅，难免犯错，若发现文中有错误遗漏，望不吝赐教。</p>
+<p>END</p>
+<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">程序汪往期精彩文章包含答案</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">程序汪最近整理的BAT大小厂面试题(面试题目录推荐)</span><br><span class="line">目录：我把精华文章都整理出来了</span><br><span class="line">程序员新人刚进公司很懵逼，程序汪给5个建议程序汪粉丝拿下腾讯视频字节跳动offer22K面经分享</span><br><span class="line">程序汪本科应届粉丝22K拿下字节跳动和顺丰offer源码分享 一个基于spring boot的JAVA开源商城系统</span><br><span class="line">推荐3个快速开发平台 项目经验又有着落了Github上10个超好看 可视化面板，后台管理页面有着落了真实案例:6年18K的android开发转8K的Java竟然没找到工作铁粉：汪哥春招我上岸的公司有字节腾讯shappeedd等工资都不低于30W</span><br><span class="line">推荐3个开源电商系统，应该比花2万培训的电商有技术含量多了 有源码提供招聘信息上是8-13KJava研发岗,面试通过后 HR：7K能接受的话可以来这里锻炼一下</span><br></pre></td></tr></table></figure></div>
+
+<p>阅读 2008</p>
+<p>赞5在看7</p>
+<p><img alt="img" data-src="http://wx.qlogo.cn/mmopen/TTQibyKjrickz94hTichQZM8ToKxp28icWD6rkNjRPmrdNIibjHJy6dQgVUoDEGx3O6WwckZL4oY5Sn3O9kFSjQAbnakZxEGR1aWE/132" class="lazyload"></p>
+<p>写下你的留言</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">简凡丶</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/01/15/5.%20%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9F/">http://yoursite.com/2020/01/15/5.%20%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E9%87%8F%E5%BE%88%E5%A4%A7%EF%BC%8C%E5%88%86%E9%A1%B5%E6%9F%A5%E8%AF%A2%E5%BE%88%E6%85%A2%EF%BC%8C%E6%9C%89%E4%BB%80%E4%B9%88%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9F/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">BestBear</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库    </a></div><div class="post_share"><div class="social-share" data-image="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/01/15/1.%20Java%E5%9F%BA%E7%A1%80/Synchronized%E5%BA%95%E5%B1%82%E5%AE%9E%E7%8E%B0/"><img class="prev_cover lazyload" data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>网络相关基础</span></div></a></div><div class="next-post pull_right"><a href="/2020/01/15/7.%20%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8FId/"><img class="next_cover lazyload" data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>分布式Id</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2020/01/15/5. 数据库/aop读写分离实战/" title="aop实现读写分离"><img class="relatedPosts_cover lazyload"data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-01-15</div><div class="relatedPosts_title">aop实现读写分离</div></div></a></div><div class="relatedPosts_item"><a href="/2020/01/15/5. 数据库/数据库/" title="数据库"><img class="relatedPosts_cover lazyload"data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2020-01-15</div><div class="relatedPosts_title">数据库</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'POlJROSsMvr6BdUPhPaqFdlj-gzGzoHsz',
+  appKey:'JhPOeqEkpBUGVUNuYYxRCvUt',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 简凡丶</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2d_models/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2d_models/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body></html>
