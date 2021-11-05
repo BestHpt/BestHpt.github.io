@@ -69,7 +69,7 @@ function activateLightMode(){
   isHome: false,
   isPost: true
   
-}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">BestBear</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/01/13/ViKAkpCRr5xde1j.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">30</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#背景"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">背景</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#什么是统一异常处理"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">什么是统一异常处理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#目标"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">目标</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#统一异常处理实战"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">统一异常处理实战</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#用-Assert-断言-替换-throw-exception"><span class="toc_mobile_items-number">1.3.1.</span> <span class="toc_mobile_items-text">用 Assert(断言) 替换 throw exception</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#善解人意的Enum"><span class="toc_mobile_items-number">1.3.1.1.</span> <span class="toc_mobile_items-text">善解人意的Enum</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#定义统一异常处理器类"><span class="toc_mobile_items-number">1.3.2.</span> <span class="toc_mobile_items-text">定义统一异常处理器类</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#异常处理器说明"><span class="toc_mobile_items-number">1.3.2.1.</span> <span class="toc_mobile_items-text">异常处理器说明</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleServletException"><span class="toc_mobile_items-number">1.3.2.1.1.</span> <span class="toc_mobile_items-text">handleServletException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleBindException"><span class="toc_mobile_items-number">1.3.2.1.2.</span> <span class="toc_mobile_items-text">handleBindException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleValidException"><span class="toc_mobile_items-number">1.3.2.1.3.</span> <span class="toc_mobile_items-text">handleValidException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleBusinessException、handleBaseException"><span class="toc_mobile_items-number">1.3.2.1.4.</span> <span class="toc_mobile_items-text">handleBusinessException、handleBaseException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleException"><span class="toc_mobile_items-number">1.3.2.1.5.</span> <span class="toc_mobile_items-text">handleException</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#异于常人的404"><span class="toc_mobile_items-number">1.3.2.2.</span> <span class="toc_mobile_items-text">异于常人的404</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#统一返回结果"><span class="toc_mobile_items-number">1.3.2.3.</span> <span class="toc_mobile_items-text">统一返回结果</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#验证统一异常处理"><span class="toc_mobile_items-number">1.3.2.4.</span> <span class="toc_mobile_items-text">验证统一异常处理</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#主要代码"><span class="toc_mobile_items-number">1.3.2.4.1.</span> <span class="toc_mobile_items-text">主要代码</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#开始验证"><span class="toc_mobile_items-number">1.3.2.4.2.</span> <span class="toc_mobile_items-text">开始验证</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-6"><a class="toc_mobile_items-link" href="#捕获自定义异常"><span class="toc_mobile_items-number">1.3.2.4.2.1.</span> <span class="toc_mobile_items-text">捕获自定义异常</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-6"><a class="toc_mobile_items-link" href="#捕获未知异常"><span class="toc_mobile_items-number">1.3.2.4.2.2.</span> <span class="toc_mobile_items-text">捕获未知异常</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#小结"><span class="toc_mobile_items-number">1.3.2.5.</span> <span class="toc_mobile_items-text">小结</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#扩展"><span class="toc_mobile_items-number">1.3.3.</span> <span class="toc_mobile_items-text">扩展</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#总结"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">总结</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是统一异常处理"><span class="toc-number">1.1.</span> <span class="toc-text">什么是统一异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.2.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统一异常处理实战"><span class="toc-number">1.3.</span> <span class="toc-text">统一异常处理实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用-Assert-断言-替换-throw-exception"><span class="toc-number">1.3.1.</span> <span class="toc-text">用 Assert(断言) 替换 throw exception</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#善解人意的Enum"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">善解人意的Enum</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义统一异常处理器类"><span class="toc-number">1.3.2.</span> <span class="toc-text">定义统一异常处理器类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#异常处理器说明"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">异常处理器说明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#handleServletException"><span class="toc-number">1.3.2.1.1.</span> <span class="toc-text">handleServletException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleBindException"><span class="toc-number">1.3.2.1.2.</span> <span class="toc-text">handleBindException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleValidException"><span class="toc-number">1.3.2.1.3.</span> <span class="toc-text">handleValidException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleBusinessException、handleBaseException"><span class="toc-number">1.3.2.1.4.</span> <span class="toc-text">handleBusinessException、handleBaseException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleException"><span class="toc-number">1.3.2.1.5.</span> <span class="toc-text">handleException</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异于常人的404"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">异于常人的404</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#统一返回结果"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">统一返回结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证统一异常处理"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">验证统一异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#主要代码"><span class="toc-number">1.3.2.4.1.</span> <span class="toc-text">主要代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开始验证"><span class="toc-number">1.3.2.4.2.</span> <span class="toc-text">开始验证</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#捕获自定义异常"><span class="toc-number">1.3.2.4.2.1.</span> <span class="toc-text">捕获自定义异常</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#捕获未知异常"><span class="toc-number">1.3.2.4.2.2.</span> <span class="toc-text">捕获未知异常</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">1.3.3.</span> <span class="toc-text">扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">全局异常处理</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-01-15<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2021-05-07</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java/">Java</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java/Java%E5%9F%BA%E7%A1%80/">Java基础</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">6k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 23 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h1><p>软件开发过程中，不可避免的是需要处理各种异常，就我自己来说，至少有一半以上的时间都是在处理各种异常情况，所以代码中就会出现大量的<code>try {...} catch {...} finally {...}</code> 代码块，不仅有大量的冗余代码，而且还影响代码的可读性。比较下面两张图，看看您现在编写的代码属于哪一种风格？然后哪种编码风格您更喜欢？</p>
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">BestBear</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/01/13/ViKAkpCRr5xde1j.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">31</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#背景"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">背景</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#什么是统一异常处理"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">什么是统一异常处理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#目标"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">目标</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#统一异常处理实战"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">统一异常处理实战</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#用-Assert-断言-替换-throw-exception"><span class="toc_mobile_items-number">1.3.1.</span> <span class="toc_mobile_items-text">用 Assert(断言) 替换 throw exception</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#善解人意的Enum"><span class="toc_mobile_items-number">1.3.1.1.</span> <span class="toc_mobile_items-text">善解人意的Enum</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#定义统一异常处理器类"><span class="toc_mobile_items-number">1.3.2.</span> <span class="toc_mobile_items-text">定义统一异常处理器类</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#异常处理器说明"><span class="toc_mobile_items-number">1.3.2.1.</span> <span class="toc_mobile_items-text">异常处理器说明</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleServletException"><span class="toc_mobile_items-number">1.3.2.1.1.</span> <span class="toc_mobile_items-text">handleServletException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleBindException"><span class="toc_mobile_items-number">1.3.2.1.2.</span> <span class="toc_mobile_items-text">handleBindException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleValidException"><span class="toc_mobile_items-number">1.3.2.1.3.</span> <span class="toc_mobile_items-text">handleValidException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleBusinessException、handleBaseException"><span class="toc_mobile_items-number">1.3.2.1.4.</span> <span class="toc_mobile_items-text">handleBusinessException、handleBaseException</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#handleException"><span class="toc_mobile_items-number">1.3.2.1.5.</span> <span class="toc_mobile_items-text">handleException</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#异于常人的404"><span class="toc_mobile_items-number">1.3.2.2.</span> <span class="toc_mobile_items-text">异于常人的404</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#统一返回结果"><span class="toc_mobile_items-number">1.3.2.3.</span> <span class="toc_mobile_items-text">统一返回结果</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#验证统一异常处理"><span class="toc_mobile_items-number">1.3.2.4.</span> <span class="toc_mobile_items-text">验证统一异常处理</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#主要代码"><span class="toc_mobile_items-number">1.3.2.4.1.</span> <span class="toc_mobile_items-text">主要代码</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-5"><a class="toc_mobile_items-link" href="#开始验证"><span class="toc_mobile_items-number">1.3.2.4.2.</span> <span class="toc_mobile_items-text">开始验证</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-6"><a class="toc_mobile_items-link" href="#捕获自定义异常"><span class="toc_mobile_items-number">1.3.2.4.2.1.</span> <span class="toc_mobile_items-text">捕获自定义异常</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-6"><a class="toc_mobile_items-link" href="#捕获未知异常"><span class="toc_mobile_items-number">1.3.2.4.2.2.</span> <span class="toc_mobile_items-text">捕获未知异常</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-4"><a class="toc_mobile_items-link" href="#小结"><span class="toc_mobile_items-number">1.3.2.5.</span> <span class="toc_mobile_items-text">小结</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#扩展"><span class="toc_mobile_items-number">1.3.3.</span> <span class="toc_mobile_items-text">扩展</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#总结"><span class="toc_mobile_items-number">1.4.</span> <span class="toc_mobile_items-text">总结</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#背景"><span class="toc-number">1.</span> <span class="toc-text">背景</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是统一异常处理"><span class="toc-number">1.1.</span> <span class="toc-text">什么是统一异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#目标"><span class="toc-number">1.2.</span> <span class="toc-text">目标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#统一异常处理实战"><span class="toc-number">1.3.</span> <span class="toc-text">统一异常处理实战</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用-Assert-断言-替换-throw-exception"><span class="toc-number">1.3.1.</span> <span class="toc-text">用 Assert(断言) 替换 throw exception</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#善解人意的Enum"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">善解人意的Enum</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#定义统一异常处理器类"><span class="toc-number">1.3.2.</span> <span class="toc-text">定义统一异常处理器类</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#异常处理器说明"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">异常处理器说明</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#handleServletException"><span class="toc-number">1.3.2.1.1.</span> <span class="toc-text">handleServletException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleBindException"><span class="toc-number">1.3.2.1.2.</span> <span class="toc-text">handleBindException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleValidException"><span class="toc-number">1.3.2.1.3.</span> <span class="toc-text">handleValidException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleBusinessException、handleBaseException"><span class="toc-number">1.3.2.1.4.</span> <span class="toc-text">handleBusinessException、handleBaseException</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#handleException"><span class="toc-number">1.3.2.1.5.</span> <span class="toc-text">handleException</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#异于常人的404"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">异于常人的404</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#统一返回结果"><span class="toc-number">1.3.2.3.</span> <span class="toc-text">统一返回结果</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#验证统一异常处理"><span class="toc-number">1.3.2.4.</span> <span class="toc-text">验证统一异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#主要代码"><span class="toc-number">1.3.2.4.1.</span> <span class="toc-text">主要代码</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#开始验证"><span class="toc-number">1.3.2.4.2.</span> <span class="toc-text">开始验证</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#捕获自定义异常"><span class="toc-number">1.3.2.4.2.1.</span> <span class="toc-text">捕获自定义异常</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#捕获未知异常"><span class="toc-number">1.3.2.4.2.2.</span> <span class="toc-text">捕获未知异常</span></a></li></ol></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#小结"><span class="toc-number">1.3.2.5.</span> <span class="toc-text">小结</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#扩展"><span class="toc-number">1.3.3.</span> <span class="toc-text">扩展</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">1.4.</span> <span class="toc-text">总结</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">全局异常处理</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2020-01-15<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2021-10-23</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java/">Java</a><i class="fa fa-angle-right fa-fw" aria-hidden="true"></i><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Java/Java%E5%9F%BA%E7%A1%80/">Java基础</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">5.8k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 21 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a><strong>背景</strong></h1><p>软件开发过程中，不可避免的是需要处理各种异常，就我自己来说，至少有一半以上的时间都是在处理各种异常情况，所以代码中就会出现大量的<code>try {...} catch {...} finally {...}</code> 代码块，不仅有大量的冗余代码，而且还影响代码的可读性。比较下面两张图，看看您现在编写的代码属于哪一种风格？然后哪种编码风格您更喜欢？</p>
 <p>丑陋的 try catch 代码块</p>
 <p><img alt="img" data-src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tsgqduDKIAmIibeDmTvPssaDQS6AZagVnNseg1OUbsiadgRwGdicoicmYys49ZiadT47nGLj6wVTvDpibFWQ/640?wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload">优雅的Controller</p>
 <p><img alt="img" data-src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tsgqduDKIAmIibeDmTvPssaDQxcuGb3IjKB8loibofWf6GDAmKox1Vl6REOQfLHjlHia22NWic0XQJ5Vvw/640?wxfrom=5&wx_lazy=1&wx_co=1" class="lazyload">上面的示例，还只是在<code>Controller</code>层，如果是在<code>Service</code>层，可能会有更多的<code>try catch</code>代码块。这将会严重影响代码的可读性、“美观性”。</p>
@@ -88,32 +88,336 @@ function activateLightMode(){
 <h2 id="目标"><a href="#目标" class="headerlink" title="目标"></a><strong>目标</strong></h2><p>消灭95%以上的 <code>try catch</code> 代码块，以优雅的 <code>Assert</code>(断言) 方式来校验业务的异常情况，只关注业务逻辑，而不用花费大量精力写冗余的 <code>try catch</code> 代码块。</p>
 <h2 id="统一异常处理实战"><a href="#统一异常处理实战" class="headerlink" title="统一异常处理实战"></a><strong>统一异常处理实战</strong></h2><p>在定义统一异常处理类之前，先来介绍一下如何优雅的判定异常情况并抛异常。</p>
 <h3 id="用-Assert-断言-替换-throw-exception"><a href="#用-Assert-断言-替换-throw-exception" class="headerlink" title="用 Assert(断言) 替换 throw exception"></a><strong>用 Assert(断言) 替换 throw exception</strong></h3><p>想必 <code>Assert(断言)</code> 大家都很熟悉，比如 <code>Spring</code> 家族的 <code>org.springframework.util.Assert</code>，在我们写测试用例的时候经常会用到，使用断言能让我们编码的时候有一种非一般丝滑的感觉，比如：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">java</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        ...</span><br><span class="line">        User user = userDao.selectById(userId);</span><br><span class="line">        Assert.notNull(user, <span class="string">"用户不存在."</span>);</span><br><span class="line">        ...</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 另一种写法</span></span><br><span class="line">        User user = userDao.selectById(userId);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"用户不存在."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+<pre><code class="java">@Test
+    public void test1() {
+        ...
+        User user = userDao.selectById(userId);
+        Assert.notNull(user, &quot;用户不存在.&quot;);
+        ...
+    }
 
+    @Test
+    public void test2() {
+        // 另一种写法
+        User user = userDao.selectById(userId);
+        if (user == null) {
+            throw new IllegalArgumentException(&quot;用户不存在.&quot;);
+        }
+    }</code></pre>
 <p>有没有感觉第一种判定非空的写法很优雅，第二种写法则是相对丑陋的 <code>if {...}</code> 代码块。那么<br>神奇的 <code>Assert.notNull()</code> 背后到底做了什么呢？下面是 <code>Assert</code> 的部分源码：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Assert &#123;</span><br><span class="line">    public Assert() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void notNull(@Nullable Object object, String message) &#123;</span><br><span class="line">        if (object &#x3D;&#x3D; null) &#123;</span><br><span class="line">            throw new IllegalArgumentException(message);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<pre><code>public abstract class Assert {
+    public Assert() {
+    }
 
-<p>可以看到，<code>Assert</code> 其实就是帮我们把 <code>if {...}</code> 封装了一下，是不是很神奇。虽然很简单，但不可否认的是编码体验至少提升了一个档次。那么我们能不能模仿<code>org.springframework.util.Assert</code>，也写一个断言类，不过断言失败后抛出的异常不是<code>IllegalArgumentException</code> 这些内置异常，而是我们自己定义的异常。下面让我们来尝试一下。</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">Assert</span><br><span class="line">public interface Assert &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建异常</span><br><span class="line">     * @param args</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    BaseException newException(Object... args);</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 创建异常</span><br><span class="line">     * @param t</span><br><span class="line">     * @param args</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    BaseException newException(Throwable t, Object... args);</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * &lt;p&gt;断言对象&lt;code&gt;obj&lt;&#x2F;code&gt;非空。如果对象&lt;code&gt;obj&lt;&#x2F;code&gt;为空，则抛出异常</span><br><span class="line">     *</span><br><span class="line">     * @param obj 待判断对象</span><br><span class="line">     *&#x2F;</span><br><span class="line">    default void assertNotNull(Object obj) &#123;</span><br><span class="line">        if (obj &#x3D;&#x3D; null) &#123;</span><br><span class="line">            throw newException(obj);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * &lt;p&gt;断言对象&lt;code&gt;obj&lt;&#x2F;code&gt;非空。如果对象&lt;code&gt;obj&lt;&#x2F;code&gt;为空，则抛出异常</span><br><span class="line">     * &lt;p&gt;异常信息&lt;code&gt;message&lt;&#x2F;code&gt;支持传递参数方式，避免在判断之前进行字符串拼接操作</span><br><span class="line">     *</span><br><span class="line">     * @param obj 待判断对象</span><br><span class="line">     * @param args message占位符对应的参数列表</span><br><span class="line">     *&#x2F;</span><br><span class="line">    default void assertNotNull(Object obj, Object... args) &#123;</span><br><span class="line">        if (obj &#x3D;&#x3D; null) &#123;</span><br><span class="line">            throw newException(args);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+    public static void notNull(@Nullable Object object, String message) {
+        if (object == null) {
+            throw new IllegalArgumentException(message);
+        }
+    }
+}</code></pre><p>可以看到，<code>Assert</code> 其实就是帮我们把 <code>if {...}</code> 封装了一下，是不是很神奇。虽然很简单，但不可否认的是编码体验至少提升了一个档次。那么我们能不能模仿<code>org.springframework.util.Assert</code>，也写一个断言类，不过断言失败后抛出的异常不是<code>IllegalArgumentException</code> 这些内置异常，而是我们自己定义的异常。下面让我们来尝试一下。</p>
+<pre><code>Assert
+public interface Assert {
+    /**
+     * 创建异常
+     * @param args
+     * @return
+     */
+    BaseException newException(Object... args);
 
-<p>上面的<code>Assert</code>断言方法是使用接口的默认方法定义的，然后有没有发现当断言失败后，抛出的异常不是具体的某个异常，而是交由2个<code>newException</code>接口方法提供。因为业务逻辑中出现的异常基本都是对应特定的场景，比如根据用户id获取用户信息，查询结果为<code>null</code>，此时抛出的异常可能为<code>UserNotFoundException</code>，并且有特定的异常码（比如7001）和异常信息“用户不存在”。所以具体抛出什么异常，有<code>Assert</code>的实现类决定。（此处推荐一下前日的文章 去掉烦人的 !=null）</p>
+    /**
+     * 创建异常
+     * @param t
+     * @param args
+     * @return
+     */
+    BaseException newException(Throwable t, Object... args);
+
+    /**
+     * &lt;p&gt;断言对象&lt;code&gt;obj&lt;/code&gt;非空。如果对象&lt;code&gt;obj&lt;/code&gt;为空，则抛出异常
+     *
+     * @param obj 待判断对象
+     */
+    default void assertNotNull(Object obj) {
+        if (obj == null) {
+            throw newException(obj);
+        }
+    }
+
+    /**
+     * &lt;p&gt;断言对象&lt;code&gt;obj&lt;/code&gt;非空。如果对象&lt;code&gt;obj&lt;/code&gt;为空，则抛出异常
+     * &lt;p&gt;异常信息&lt;code&gt;message&lt;/code&gt;支持传递参数方式，避免在判断之前进行字符串拼接操作
+     *
+     * @param obj 待判断对象
+     * @param args message占位符对应的参数列表
+     */
+    default void assertNotNull(Object obj, Object... args) {
+        if (obj == null) {
+            throw newException(args);
+        }
+    }
+}</code></pre><p>上面的<code>Assert</code>断言方法是使用接口的默认方法定义的，然后有没有发现当断言失败后，抛出的异常不是具体的某个异常，而是交由2个<code>newException</code>接口方法提供。因为业务逻辑中出现的异常基本都是对应特定的场景，比如根据用户id获取用户信息，查询结果为<code>null</code>，此时抛出的异常可能为<code>UserNotFoundException</code>，并且有特定的异常码（比如7001）和异常信息“用户不存在”。所以具体抛出什么异常，有<code>Assert</code>的实现类决定。（此处推荐一下前日的文章 去掉烦人的 !=null）</p>
 <p>看到这里，您可能会有这样的疑问，按照上面的说法，那岂不是有多少异常情况，就得有定义等量的断言类和异常类，这显然是反人类的，这也没想象中高明嘛。别急，且听我细细道来。</p>
 <h4 id="善解人意的Enum"><a href="#善解人意的Enum" class="headerlink" title="善解人意的Enum"></a><strong>善解人意的Enum</strong></h4><p>自定义异常<code>BaseException</code>有2个属性，即<code>code</code>、<code>message</code>，这样一对属性，有没有想到什么类一般也会定义这2个属性？没错，就是枚举类。且看我如何将 <code>Enum</code> 和 <code>Assert</code> 结合起来，相信我一定会让你眼前一亮。如下：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">public interface IResponseEnum &#123;</span><br><span class="line">    int getCode();</span><br><span class="line">    String getMessage();</span><br><span class="line">&#125;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * &lt;p&gt;业务异常&lt;&#x2F;p&gt;</span><br><span class="line"> * &lt;p&gt;业务处理时，出现异常，可以抛出该异常&lt;&#x2F;p&gt;</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class BusinessException extends  BaseException &#123;</span><br><span class="line"></span><br><span class="line">    private static final long serialVersionUID &#x3D; 1L;</span><br><span class="line"></span><br><span class="line">    public BusinessException(IResponseEnum responseEnum, Object[] args, String message) &#123;</span><br><span class="line">        super(responseEnum, args, message);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public BusinessException(IResponseEnum responseEnum, Object[] args, String message, Throwable cause) &#123;</span><br><span class="line">        super(responseEnum, args, message, cause);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">public interface BusinessExceptionAssert extends IResponseEnum, Assert &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    default BaseException newException(Object... args) &#123;</span><br><span class="line">        String msg &#x3D; MessageFormat.format(this.getMessage(), args);</span><br><span class="line"></span><br><span class="line">        return new BusinessException(this, args, msg);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    default BaseException newException(Throwable t, Object... args) &#123;</span><br><span class="line">        String msg &#x3D; MessageFormat.format(this.getMessage(), args);</span><br><span class="line"></span><br><span class="line">        return new BusinessException(this, args, msg, t);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">@Getter</span><br><span class="line">@AllArgsConstructor</span><br><span class="line">public enum ResponseEnum implements BusinessExceptionAssert &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * Bad licence type</span><br><span class="line">     *&#x2F;</span><br><span class="line">    BAD_LICENCE_TYPE(7001, &quot;Bad licence type.&quot;),</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * Licence not found</span><br><span class="line">     *&#x2F;</span><br><span class="line">    LICENCE_NOT_FOUND(7002, &quot;Licence not found.&quot;)</span><br><span class="line">    ;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 返回码</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private int code;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 返回消息</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private String message;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<pre><code>public interface IResponseEnum {
+    int getCode();
+    String getMessage();
+}
+/**
+ * &lt;p&gt;业务异常&lt;/p&gt;
+ * &lt;p&gt;业务处理时，出现异常，可以抛出该异常&lt;/p&gt;
+ */
+public class BusinessException extends  BaseException {
 
-<p>看到这里，有没有眼前一亮的感觉，代码示例中定义了两个枚举实例：<code>BAD_LICENCE_TYPE</code>、<code>LICENCE_NOT_FOUND</code>，分别对应了<code>BadLicenceTypeException</code>、<code>LicenceNotFoundException</code>两种异常。以后每增加一种异常情况，只需增加一个枚举实例即可，再也不用每一种异常都定义一个异常类了。然后再来看下如何使用，假设<code>LicenceService</code>有校验<code>Licence</code>是否存在的方法，如下：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;**</span><br><span class="line">     * 校验&#123;@link Licence&#125;存在</span><br><span class="line">     * @param licence</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void checkNotNull(Licence licence) &#123;</span><br><span class="line">        ResponseEnum.LICENCE_NOT_FOUND.assertNotNull(licence);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+    private static final long serialVersionUID = 1L;
 
-<p>若不使用断言，代码可能如下：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">private void checkNotNull(Licence licence) &#123;</span><br><span class="line">        if (licence &#x3D;&#x3D; null) &#123;</span><br><span class="line">            throw new LicenceNotFoundException();</span><br><span class="line">            &#x2F;&#x2F; 或者这样</span><br><span class="line">            throw new BusinessException(7001, &quot;Bad licence type.&quot;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure></div>
+    public BusinessException(IResponseEnum responseEnum, Object[] args, String message) {
+        super(responseEnum, args, message);
+    }
 
-<p>使用枚举类结合(继承)<code>Assert</code>，只需根据特定的异常情况定义不同的枚举实例，如上面的<code>BAD_LICENCE_TYPE</code>、<code>LICENCE_NOT_FOUND</code>，就能够针对不同情况抛出特定的异常（这里指携带特定的异常码和异常消息），这样既不用定义大量的异常类，同时还具备了断言的良好可读性，当然这种方案的好处远不止这些，请继续阅读后文，慢慢体会。</p>
+    public BusinessException(IResponseEnum responseEnum, Object[] args, String message, Throwable cause) {
+        super(responseEnum, args, message, cause);
+    }
+}
+public interface BusinessExceptionAssert extends IResponseEnum, Assert {
+
+    @Override
+    default BaseException newException(Object... args) {
+        String msg = MessageFormat.format(this.getMessage(), args);
+
+        return new BusinessException(this, args, msg);
+    }
+
+    @Override
+    default BaseException newException(Throwable t, Object... args) {
+        String msg = MessageFormat.format(this.getMessage(), args);
+
+        return new BusinessException(this, args, msg, t);
+    }
+
+}
+@Getter
+@AllArgsConstructor
+public enum ResponseEnum implements BusinessExceptionAssert {
+
+    /**
+     * Bad licence type
+     */
+    BAD_LICENCE_TYPE(7001, &quot;Bad licence type.&quot;),
+    /**
+     * Licence not found
+     */
+    LICENCE_NOT_FOUND(7002, &quot;Licence not found.&quot;)
+    ;
+
+    /**
+     * 返回码
+     */
+    private int code;
+    /**
+     * 返回消息
+     */
+    private String message;
+}</code></pre><p>看到这里，有没有眼前一亮的感觉，代码示例中定义了两个枚举实例：<code>BAD_LICENCE_TYPE</code>、<code>LICENCE_NOT_FOUND</code>，分别对应了<code>BadLicenceTypeException</code>、<code>LicenceNotFoundException</code>两种异常。以后每增加一种异常情况，只需增加一个枚举实例即可，再也不用每一种异常都定义一个异常类了。然后再来看下如何使用，假设<code>LicenceService</code>有校验<code>Licence</code>是否存在的方法，如下：</p>
+<pre><code>/**
+     * 校验{@link Licence}存在
+     * @param licence
+     */
+    private void checkNotNull(Licence licence) {
+        ResponseEnum.LICENCE_NOT_FOUND.assertNotNull(licence);
+    }</code></pre><p>若不使用断言，代码可能如下：</p>
+<pre><code>private void checkNotNull(Licence licence) {
+        if (licence == null) {
+            throw new LicenceNotFoundException();
+            // 或者这样
+            throw new BusinessException(7001, &quot;Bad licence type.&quot;);
+        }
+    }</code></pre><p>使用枚举类结合(继承)<code>Assert</code>，只需根据特定的异常情况定义不同的枚举实例，如上面的<code>BAD_LICENCE_TYPE</code>、<code>LICENCE_NOT_FOUND</code>，就能够针对不同情况抛出特定的异常（这里指携带特定的异常码和异常消息），这样既不用定义大量的异常类，同时还具备了断言的良好可读性，当然这种方案的好处远不止这些，请继续阅读后文，慢慢体会。</p>
 <blockquote>
 <p>注：上面举的例子是针对特定的业务，而有部分异常情况是通用的，比如：服务器繁忙、网络异常、服务器异常、参数校验异常、404等，所以有<code>CommonResponseEnum</code>、<code>ArgumentResponseEnum</code>、<code>ServletResponseEnum</code>，其中 <code>ServletResponseEnum</code> 会在后文详细说明。</p>
 </blockquote>
-<h3 id="定义统一异常处理器类"><a href="#定义统一异常处理器类" class="headerlink" title="定义统一异常处理器类"></a>定义统一异常处理器类</h3><div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@Component</span><br><span class="line">@ControllerAdvice</span><br><span class="line">@ConditionalOnWebApplication</span><br><span class="line">@ConditionalOnMissingBean(UnifiedExceptionHandler.class)</span><br><span class="line">public class UnifiedExceptionHandler &#123;</span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 生产环境</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private final static String ENV_PROD &#x3D; &quot;prod&quot;;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private UnifiedMessageSource unifiedMessageSource;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 当前环境</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Value(&quot;$&#123;spring.profiles.active&#125;&quot;)</span><br><span class="line">    private String profile;</span><br><span class="line">    </span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 获取国际化消息</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public String getMessage(BaseException e) &#123;</span><br><span class="line">        String code &#x3D; &quot;response.&quot; + e.getResponseEnum().toString();</span><br><span class="line">        String message &#x3D; unifiedMessageSource.getMessage(code, e.getArgs());</span><br><span class="line"></span><br><span class="line">        if (message &#x3D;&#x3D; null || message.isEmpty()) &#123;</span><br><span class="line">            return e.getMessage();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return message;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 业务异常</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; BusinessException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleBusinessException(BaseException e) &#123;</span><br><span class="line">        log.error(e.getMessage(), e);</span><br><span class="line"></span><br><span class="line">        return new ErrorResponse(e.getResponseEnum().getCode(), getMessage(e));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 自定义异常</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; BaseException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleBaseException(BaseException e) &#123;</span><br><span class="line">        log.error(e.getMessage(), e);</span><br><span class="line"></span><br><span class="line">        return new ErrorResponse(e.getResponseEnum().getCode(), getMessage(e));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * Controller上一层相关异常</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(&#123;</span><br><span class="line">            NoHandlerFoundException.class,</span><br><span class="line">            HttpRequestMethodNotSupportedException.class,</span><br><span class="line">            HttpMediaTypeNotSupportedException.class,</span><br><span class="line">            MissingPathVariableException.class,</span><br><span class="line">            MissingServletRequestParameterException.class,</span><br><span class="line">            TypeMismatchException.class,</span><br><span class="line">            HttpMessageNotReadableException.class,</span><br><span class="line">            HttpMessageNotWritableException.class,</span><br><span class="line">            &#x2F;&#x2F; BindException.class,</span><br><span class="line">            &#x2F;&#x2F; MethodArgumentNotValidException.class</span><br><span class="line">            HttpMediaTypeNotAcceptableException.class,</span><br><span class="line">            ServletRequestBindingException.class,</span><br><span class="line">            ConversionNotSupportedException.class,</span><br><span class="line">            MissingServletRequestPartException.class,</span><br><span class="line">            AsyncRequestTimeoutException.class</span><br><span class="line">    &#125;)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleServletException(Exception e) &#123;</span><br><span class="line">        log.error(e.getMessage(), e);</span><br><span class="line">        int code &#x3D; CommonResponseEnum.SERVER_ERROR.getCode();</span><br><span class="line">        try &#123;</span><br><span class="line">            ServletResponseEnum servletExceptionEnum &#x3D; ServletResponseEnum.valueOf(e.getClass().getSimpleName());</span><br><span class="line">            code &#x3D; servletExceptionEnum.getCode();</span><br><span class="line">        &#125; catch (IllegalArgumentException e1) &#123;</span><br><span class="line">            log.error(&quot;class [&#123;&#125;] not defined in enum &#123;&#125;&quot;, e.getClass().getName(), ServletResponseEnum.class.getName());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (ENV_PROD.equals(profile)) &#123;</span><br><span class="line">            &#x2F;&#x2F; 当为生产环境, 不适合把具体的异常信息展示给用户, 比如404.</span><br><span class="line">            code &#x3D; CommonResponseEnum.SERVER_ERROR.getCode();</span><br><span class="line">            BaseException baseException &#x3D; new BaseException(CommonResponseEnum.SERVER_ERROR);</span><br><span class="line">            String message &#x3D; getMessage(baseException);</span><br><span class="line">            return new ErrorResponse(code, message);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return new ErrorResponse(code, e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 参数绑定异常</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; BindException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleBindException(BindException e) &#123;</span><br><span class="line">        log.error(&quot;参数绑定校验异常&quot;, e);</span><br><span class="line"></span><br><span class="line">        return wrapperBindingResult(e.getBindingResult());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 参数校验异常，将校验失败的所有异常组合成一条错误信息</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; MethodArgumentNotValidException.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleValidException(MethodArgumentNotValidException e) &#123;</span><br><span class="line">        log.error(&quot;参数绑定校验异常&quot;, e);</span><br><span class="line"></span><br><span class="line">        return wrapperBindingResult(e.getBindingResult());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 包装绑定异常结果</span><br><span class="line">     *</span><br><span class="line">     * @param bindingResult 绑定结果</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private ErrorResponse wrapperBindingResult(BindingResult bindingResult) &#123;</span><br><span class="line">        StringBuilder msg &#x3D; new StringBuilder();</span><br><span class="line"></span><br><span class="line">        for (ObjectError error : bindingResult.getAllErrors()) &#123;</span><br><span class="line">            msg.append(&quot;, &quot;);</span><br><span class="line">            if (error instanceof FieldError) &#123;</span><br><span class="line">                msg.append(((FieldError) error).getField()).append(&quot;: &quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            msg.append(error.getDefaultMessage() &#x3D;&#x3D; null ? &quot;&quot; : error.getDefaultMessage());</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return new ErrorResponse(ArgumentResponseEnum.VALID_ERROR.getCode(), msg.substring(2));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 未定义异常</span><br><span class="line">     *</span><br><span class="line">     * @param e 异常</span><br><span class="line">     * @return 异常结果</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(value &#x3D; Exception.class)</span><br><span class="line">    @ResponseBody</span><br><span class="line">    public ErrorResponse handleException(Exception e) &#123;</span><br><span class="line">        log.error(e.getMessage(), e);</span><br><span class="line"></span><br><span class="line">        if (ENV_PROD.equals(profile)) &#123;</span><br><span class="line">            &#x2F;&#x2F; 当为生产环境, 不适合把具体的异常信息展示给用户, 比如数据库异常信息.</span><br><span class="line">            int code &#x3D; CommonResponseEnum.SERVER_ERROR.getCode();</span><br><span class="line">            BaseException baseException &#x3D; new BaseException(CommonResponseEnum.SERVER_ERROR);</span><br><span class="line">            String message &#x3D; getMessage(baseException);</span><br><span class="line">            return new ErrorResponse(code, message);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return new ErrorResponse(CommonResponseEnum.SERVER_ERROR.getCode(), e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<h3 id="定义统一异常处理器类"><a href="#定义统一异常处理器类" class="headerlink" title="定义统一异常处理器类"></a>定义统一异常处理器类</h3><pre><code>@Slf4j
+@Component
+@ControllerAdvice
+@ConditionalOnWebApplication
+@ConditionalOnMissingBean(UnifiedExceptionHandler.class)
+public class UnifiedExceptionHandler {
+    /**
+     * 生产环境
+     */
+    private final static String ENV_PROD = &quot;prod&quot;;
 
-<p>可以看到，上面将异常分成几类，实际上只有两大类，一类是<code>ServletException</code>、<code>ServiceException</code>，还记得上文提到的 <strong>按阶段分类</strong> 吗，即对应 进入<code>Controller</code>前的异常 和 <code>Service</code> 层异常；然后 <code>ServiceException</code> 再分成自定义异常、未知异常。对应关系如下：</p>
+    @Autowired
+    private UnifiedMessageSource unifiedMessageSource;
+
+    /**
+     * 当前环境
+     */
+    @Value(&quot;${spring.profiles.active}&quot;)
+    private String profile;
+
+    /**
+     * 获取国际化消息
+     *
+     * @param e 异常
+     * @return
+     */
+    public String getMessage(BaseException e) {
+        String code = &quot;response.&quot; + e.getResponseEnum().toString();
+        String message = unifiedMessageSource.getMessage(code, e.getArgs());
+
+        if (message == null || message.isEmpty()) {
+            return e.getMessage();
+        }
+
+        return message;
+    }
+
+    /**
+     * 业务异常
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler(value = BusinessException.class)
+    @ResponseBody
+    public ErrorResponse handleBusinessException(BaseException e) {
+        log.error(e.getMessage(), e);
+
+        return new ErrorResponse(e.getResponseEnum().getCode(), getMessage(e));
+    }
+
+    /**
+     * 自定义异常
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler(value = BaseException.class)
+    @ResponseBody
+    public ErrorResponse handleBaseException(BaseException e) {
+        log.error(e.getMessage(), e);
+
+        return new ErrorResponse(e.getResponseEnum().getCode(), getMessage(e));
+    }
+
+    /**
+     * Controller上一层相关异常
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler({
+            NoHandlerFoundException.class,
+            HttpRequestMethodNotSupportedException.class,
+            HttpMediaTypeNotSupportedException.class,
+            MissingPathVariableException.class,
+            MissingServletRequestParameterException.class,
+            TypeMismatchException.class,
+            HttpMessageNotReadableException.class,
+            HttpMessageNotWritableException.class,
+            // BindException.class,
+            // MethodArgumentNotValidException.class
+            HttpMediaTypeNotAcceptableException.class,
+            ServletRequestBindingException.class,
+            ConversionNotSupportedException.class,
+            MissingServletRequestPartException.class,
+            AsyncRequestTimeoutException.class
+    })
+    @ResponseBody
+    public ErrorResponse handleServletException(Exception e) {
+        log.error(e.getMessage(), e);
+        int code = CommonResponseEnum.SERVER_ERROR.getCode();
+        try {
+            ServletResponseEnum servletExceptionEnum = ServletResponseEnum.valueOf(e.getClass().getSimpleName());
+            code = servletExceptionEnum.getCode();
+        } catch (IllegalArgumentException e1) {
+            log.error(&quot;class [{}] not defined in enum {}&quot;, e.getClass().getName(), ServletResponseEnum.class.getName());
+        }
+
+        if (ENV_PROD.equals(profile)) {
+            // 当为生产环境, 不适合把具体的异常信息展示给用户, 比如404.
+            code = CommonResponseEnum.SERVER_ERROR.getCode();
+            BaseException baseException = new BaseException(CommonResponseEnum.SERVER_ERROR);
+            String message = getMessage(baseException);
+            return new ErrorResponse(code, message);
+        }
+
+        return new ErrorResponse(code, e.getMessage());
+    }
+
+
+    /**
+     * 参数绑定异常
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler(value = BindException.class)
+    @ResponseBody
+    public ErrorResponse handleBindException(BindException e) {
+        log.error(&quot;参数绑定校验异常&quot;, e);
+
+        return wrapperBindingResult(e.getBindingResult());
+    }
+
+    /**
+     * 参数校验异常，将校验失败的所有异常组合成一条错误信息
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler(value = MethodArgumentNotValidException.class)
+    @ResponseBody
+    public ErrorResponse handleValidException(MethodArgumentNotValidException e) {
+        log.error(&quot;参数绑定校验异常&quot;, e);
+
+        return wrapperBindingResult(e.getBindingResult());
+    }
+
+    /**
+     * 包装绑定异常结果
+     *
+     * @param bindingResult 绑定结果
+     * @return 异常结果
+     */
+    private ErrorResponse wrapperBindingResult(BindingResult bindingResult) {
+        StringBuilder msg = new StringBuilder();
+
+        for (ObjectError error : bindingResult.getAllErrors()) {
+            msg.append(&quot;, &quot;);
+            if (error instanceof FieldError) {
+                msg.append(((FieldError) error).getField()).append(&quot;: &quot;);
+            }
+            msg.append(error.getDefaultMessage() == null ? &quot;&quot; : error.getDefaultMessage());
+
+        }
+
+        return new ErrorResponse(ArgumentResponseEnum.VALID_ERROR.getCode(), msg.substring(2));
+    }
+
+    /**
+     * 未定义异常
+     *
+     * @param e 异常
+     * @return 异常结果
+     */
+    @ExceptionHandler(value = Exception.class)
+    @ResponseBody
+    public ErrorResponse handleException(Exception e) {
+        log.error(e.getMessage(), e);
+
+        if (ENV_PROD.equals(profile)) {
+            // 当为生产环境, 不适合把具体的异常信息展示给用户, 比如数据库异常信息.
+            int code = CommonResponseEnum.SERVER_ERROR.getCode();
+            BaseException baseException = new BaseException(CommonResponseEnum.SERVER_ERROR);
+            String message = getMessage(baseException);
+            return new ErrorResponse(code, message);
+        }
+
+        return new ErrorResponse(CommonResponseEnum.SERVER_ERROR.getCode(), e.getMessage());
+    }
+
+}</code></pre><p>可以看到，上面将异常分成几类，实际上只有两大类，一类是<code>ServletException</code>、<code>ServiceException</code>，还记得上文提到的 <strong>按阶段分类</strong> 吗，即对应 进入<code>Controller</code>前的异常 和 <code>Service</code> 层异常；然后 <code>ServiceException</code> 再分成自定义异常、未知异常。对应关系如下：</p>
 <ul>
 <li>进入<code>Controller</code>前的异常: handleServletException、handleBindException、handleValidException</li>
 <li>自定义异常: handleBusinessException、handleBaseException</li>
@@ -142,9 +446,8 @@ function activateLightMode(){
 <p>这个页面是如何出现的呢？实际上，当出现404的时候，默认是不抛异常的，而是 <code>forward</code>跳转到<code>/error</code>控制器，<code>spring</code>也提供了默认的<code>error</code>控制器，如下：</p>
 <p><img alt="img" data-src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" class="lazyload"></p>
 <p>那么，如何让404也抛出异常呢，只需在<code>properties</code>文件中加入如下配置即可：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spring.mvc.throw-exception-if-no-handler-found&#x3D;true</span><br><span class="line">spring.resources.add-mappings&#x3D;false</span><br></pre></td></tr></table></figure></div>
-
-<p>如此，就可以异常处理器中捕获它了，然后前端只要捕获到特定的状态码，立即跳转到404页面即可</p>
+<pre><code>spring.mvc.throw-exception-if-no-handler-found=true
+spring.resources.add-mappings=false</code></pre><p>如此，就可以异常处理器中捕获它了，然后前端只要捕获到特定的状态码，立即跳转到404页面即可</p>
 <p><strong>捕获404对应的异常</strong></p>
 <h4 id="统一返回结果"><a href="#统一返回结果" class="headerlink" title="统一返回结果"></a><strong>统一返回结果</strong></h4><p>在验证统一异常处理器之前，顺便说一下统一返回结果。说白了，其实是统一一下返回结果的数据结构。<code>code</code>、<code>message</code> 是所有返回结果中必有的字段，而当需要返回数据时，则需要另一个字段 <code>data</code> 来表示。</p>
 <p>所以首先定义一个 <code>BaseResponse</code> 来作为所有返回结果的基类；</p>
@@ -155,12 +458,104 @@ function activateLightMode(){
 <p>所有的返回结果类的定义这里就不贴出来了</p>
 <h4 id="验证统一异常处理"><a href="#验证统一异常处理" class="headerlink" title="验证统一异常处理"></a><strong>验证统一异常处理</strong></h4><p>因为这一套统一异常处理可以说是通用的，所有可以设计成一个 <code>common</code>包，以后每一个新项目/模块只需引入该包即可。所以为了验证，需要新建一个项目，并引入该 <code>common</code>包。</p>
 <h5 id="主要代码"><a href="#主要代码" class="headerlink" title="主要代码"></a>主要代码</h5><p>下面是用于验证的主要源码：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">@Service</span><br><span class="line">public class LicenceService extends ServiceImpl&lt;LicenceMapper, Licence&gt; &#123;</span><br><span class="line"></span><br><span class="line">    @Autowired</span><br><span class="line">    private OrganizationClient organizationClient;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 查询&#123;@link Licence&#125; 详情</span><br><span class="line">     * @param licenceId</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public LicenceDTO queryDetail(Long licenceId) &#123;</span><br><span class="line">        Licence licence &#x3D; this.getById(licenceId);</span><br><span class="line">        checkNotNull(licence);</span><br><span class="line"></span><br><span class="line">        OrganizationDTO org &#x3D; ClientUtil.execute(() -&gt; organizationClient.getOrganization(licence.getOrganizationId()));</span><br><span class="line">        return toLicenceDTO(licence, org);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 分页获取</span><br><span class="line">     * @param licenceParam 分页查询参数</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    public QueryData&lt;SimpleLicenceDTO&gt; getLicences(LicenceParam licenceParam) &#123;</span><br><span class="line">        String licenceType &#x3D; licenceParam.getLicenceType();</span><br><span class="line">        LicenceTypeEnum licenceTypeEnum &#x3D; LicenceTypeEnum.parseOfNullable(licenceType);</span><br><span class="line">        &#x2F;&#x2F; 断言, 非空</span><br><span class="line">        ResponseEnum.BAD_LICENCE_TYPE.assertNotNull(licenceTypeEnum);</span><br><span class="line"></span><br><span class="line">        LambdaQueryWrapper&lt;Licence&gt; wrapper &#x3D; new LambdaQueryWrapper&lt;&gt;();</span><br><span class="line">        wrapper.eq(Licence::getLicenceType, licenceType);</span><br><span class="line">        IPage&lt;Licence&gt; page &#x3D; this.page(new QueryPage&lt;&gt;(licenceParam), wrapper);</span><br><span class="line">        return new QueryData&lt;&gt;(page, this::toSimpleLicenceDTO);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 新增&#123;@link Licence&#125;</span><br><span class="line">     * @param request 请求体</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @Transactional(rollbackFor &#x3D; Throwable.class)</span><br><span class="line">    public LicenceAddRespData addLicence(LicenceAddRequest request) &#123;</span><br><span class="line">        Licence licence &#x3D; new Licence();</span><br><span class="line">        licence.setOrganizationId(request.getOrganizationId());</span><br><span class="line">        licence.setLicenceType(request.getLicenceType());</span><br><span class="line">        licence.setProductName(request.getProductName());</span><br><span class="line">        licence.setLicenceMax(request.getLicenceMax());</span><br><span class="line">        licence.setLicenceAllocated(request.getLicenceAllocated());</span><br><span class="line">        licence.setComment(request.getComment());</span><br><span class="line">        this.save(licence);</span><br><span class="line"></span><br><span class="line">        return new LicenceAddRespData(licence.getLicenceId());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * entity -&gt; simple dto</span><br><span class="line">     * @param licence &#123;@link Licence&#125; entity</span><br><span class="line">     * @return &#123;@link SimpleLicenceDTO&#125;</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private SimpleLicenceDTO toSimpleLicenceDTO(Licence licence) &#123;</span><br><span class="line">        &#x2F;&#x2F; 省略</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * entity -&gt; dto</span><br><span class="line">     * @param licence &#123;@link Licence&#125; entity</span><br><span class="line">     * @param org &#123;@link OrganizationDTO&#125;</span><br><span class="line">     * @return &#123;@link LicenceDTO&#125;</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private LicenceDTO toLicenceDTO(Licence licence, OrganizationDTO org) &#123;</span><br><span class="line">        &#x2F;&#x2F; 省略</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 校验&#123;@link Licence&#125;存在</span><br><span class="line">     * @param licence</span><br><span class="line">     *&#x2F;</span><br><span class="line">    private void checkNotNull(Licence licence) &#123;</span><br><span class="line">        ResponseEnum.LICENCE_NOT_FOUND.assertNotNull(licence);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<pre><code>@Service
+public class LicenceService extends ServiceImpl&lt;LicenceMapper, Licence&gt; {
 
-<p>PS: 这里使用的DAO框架是<code>mybatis-plus</code>。<br>启动时，自动插入的数据为：</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">-- licence</span><br><span class="line">INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)</span><br><span class="line">VALUES (1, 1, &#39;user&#39;,&#39;CustomerPro&#39;, 100,5);</span><br><span class="line">INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)</span><br><span class="line">VALUES (2, 1, &#39;user&#39;,&#39;suitability-plus&#39;, 200,189);</span><br><span class="line">INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)</span><br><span class="line">VALUES (3, 2, &#39;user&#39;,&#39;HR-PowerSuite&#39;, 100,4);</span><br><span class="line">INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)</span><br><span class="line">VALUES (4, 2, &#39;core-prod&#39;,&#39;WildCat Application Gateway&#39;, 16,16);</span><br><span class="line"></span><br><span class="line">-- organizations</span><br><span class="line">INSERT INTO organization (id, name, contact_name, contact_email, contact_phone)</span><br><span class="line">VALUES (1, &#39;customer-crm-co&#39;, &#39;Mark Balster&#39;, &#39;mark.balster@custcrmco.com&#39;, &#39;823-555-1212&#39;);</span><br><span class="line">INSERT INTO organization (id, name, contact_name, contact_email, contact_phone)</span><br><span class="line">VALUES (2, &#39;HR-PowerSuite&#39;, &#39;Doug Drewry&#39;,&#39;doug.drewry@hr.com&#39;, &#39;920-555-1212&#39;);</span><br></pre></td></tr></table></figure></div>
+    @Autowired
+    private OrganizationClient organizationClient;
 
-<h5 id="开始验证"><a href="#开始验证" class="headerlink" title="开始验证"></a><strong>开始验证</strong></h5><h6 id="捕获自定义异常"><a href="#捕获自定义异常" class="headerlink" title="捕获自定义异常"></a><strong>捕获自定义异常</strong></h6><p>\1. 获取不存在的 <code>licence</code> 详情：<a href="http://localhost:10000/licence/5。成功响应的请求：licenceId=1" target="_blank" rel="noopener">http://localhost:10000/licence/5。成功响应的请求：licenceId=1</a></p>
+    /**
+     * 查询{@link Licence} 详情
+     * @param licenceId
+     * @return
+     */
+    public LicenceDTO queryDetail(Long licenceId) {
+        Licence licence = this.getById(licenceId);
+        checkNotNull(licence);
+
+        OrganizationDTO org = ClientUtil.execute(() -&gt; organizationClient.getOrganization(licence.getOrganizationId()));
+        return toLicenceDTO(licence, org);
+    }
+
+    /**
+     * 分页获取
+     * @param licenceParam 分页查询参数
+     * @return
+     */
+    public QueryData&lt;SimpleLicenceDTO&gt; getLicences(LicenceParam licenceParam) {
+        String licenceType = licenceParam.getLicenceType();
+        LicenceTypeEnum licenceTypeEnum = LicenceTypeEnum.parseOfNullable(licenceType);
+        // 断言, 非空
+        ResponseEnum.BAD_LICENCE_TYPE.assertNotNull(licenceTypeEnum);
+
+        LambdaQueryWrapper&lt;Licence&gt; wrapper = new LambdaQueryWrapper&lt;&gt;();
+        wrapper.eq(Licence::getLicenceType, licenceType);
+        IPage&lt;Licence&gt; page = this.page(new QueryPage&lt;&gt;(licenceParam), wrapper);
+        return new QueryData&lt;&gt;(page, this::toSimpleLicenceDTO);
+    }
+
+    /**
+     * 新增{@link Licence}
+     * @param request 请求体
+     * @return
+     */
+    @Transactional(rollbackFor = Throwable.class)
+    public LicenceAddRespData addLicence(LicenceAddRequest request) {
+        Licence licence = new Licence();
+        licence.setOrganizationId(request.getOrganizationId());
+        licence.setLicenceType(request.getLicenceType());
+        licence.setProductName(request.getProductName());
+        licence.setLicenceMax(request.getLicenceMax());
+        licence.setLicenceAllocated(request.getLicenceAllocated());
+        licence.setComment(request.getComment());
+        this.save(licence);
+
+        return new LicenceAddRespData(licence.getLicenceId());
+    }
+
+    /**
+     * entity -&gt; simple dto
+     * @param licence {@link Licence} entity
+     * @return {@link SimpleLicenceDTO}
+     */
+    private SimpleLicenceDTO toSimpleLicenceDTO(Licence licence) {
+        // 省略
+    }
+
+    /**
+     * entity -&gt; dto
+     * @param licence {@link Licence} entity
+     * @param org {@link OrganizationDTO}
+     * @return {@link LicenceDTO}
+     */
+    private LicenceDTO toLicenceDTO(Licence licence, OrganizationDTO org) {
+        // 省略
+    }
+
+    /**
+     * 校验{@link Licence}存在
+     * @param licence
+     */
+    private void checkNotNull(Licence licence) {
+        ResponseEnum.LICENCE_NOT_FOUND.assertNotNull(licence);
+    }
+
+}</code></pre><p>PS: 这里使用的DAO框架是<code>mybatis-plus</code>。<br>启动时，自动插入的数据为：</p>
+<pre><code>-- licence
+INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)
+VALUES (1, 1, &#39;user&#39;,&#39;CustomerPro&#39;, 100,5);
+INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)
+VALUES (2, 1, &#39;user&#39;,&#39;suitability-plus&#39;, 200,189);
+INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)
+VALUES (3, 2, &#39;user&#39;,&#39;HR-PowerSuite&#39;, 100,4);
+INSERT INTO licence (licence_id, organization_id, licence_type, product_name, licence_max, licence_allocated)
+VALUES (4, 2, &#39;core-prod&#39;,&#39;WildCat Application Gateway&#39;, 16,16);
+
+-- organizations
+INSERT INTO organization (id, name, contact_name, contact_email, contact_phone)
+VALUES (1, &#39;customer-crm-co&#39;, &#39;Mark Balster&#39;, &#39;mark.balster@custcrmco.com&#39;, &#39;823-555-1212&#39;);
+INSERT INTO organization (id, name, contact_name, contact_email, contact_phone)
+VALUES (2, &#39;HR-PowerSuite&#39;, &#39;Doug Drewry&#39;,&#39;doug.drewry@hr.com&#39;, &#39;920-555-1212&#39;);</code></pre><h5 id="开始验证"><a href="#开始验证" class="headerlink" title="开始验证"></a><strong>开始验证</strong></h5><h6 id="捕获自定义异常"><a href="#捕获自定义异常" class="headerlink" title="捕获自定义异常"></a><strong>捕获自定义异常</strong></h6><p>\1. 获取不存在的 <code>licence</code> 详情：<a href="http://localhost:10000/licence/5。成功响应的请求：licenceId=1" target="_blank" rel="noopener">http://localhost:10000/licence/5。成功响应的请求：licenceId=1</a></p>
 <p>检验非空</p>
 <p><img alt="img" data-src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" class="lazyload"></p>
 <p>捕获 Licence not found 异常<img alt="img" data-src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" class="lazyload"></p>
@@ -220,11 +615,61 @@ function activateLightMode(){
 <p><strong>获取国际化消息</strong></p>
 <p>最后总结，全局异常属于老生长谈的话题，希望这次通过手机的项目对大家有点指导性的学习。大家根据实际情况自行修改。</p>
 <p>也可以采用以下的jsonResult对象的方式进行处理，也贴出来代码.</p>
-<div class="code-area-wrap"><div class="highlight-tools"><i class="fa fa-angle-down code-expand code-closed" aria-hidden="true"></i><div class="code_lang">Code</div><div class="copy-notice"></div><i class="fa fa-clipboard" aria-hidden="true"></i></div><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">@Slf4j</span><br><span class="line">@RestControllerAdvice</span><br><span class="line">public class GlobalExceptionHandler &#123;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 没有登录</span><br><span class="line">     * @param request</span><br><span class="line">     * @param response</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(NoLoginException.class)</span><br><span class="line">    public Object noLoginExceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        log.error(&quot;[GlobalExceptionHandler][noLoginExceptionHandler] exception&quot;,e);</span><br><span class="line">        JsonResult jsonResult &#x3D; new JsonResult();</span><br><span class="line">        jsonResult.setCode(JsonResultCode.NO_LOGIN);</span><br><span class="line">        jsonResult.setMessage(&quot;用户登录失效或者登录超时,请先登录&quot;);</span><br><span class="line">        return jsonResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 业务异常</span><br><span class="line">     * @param request</span><br><span class="line">     * @param response</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(ServiceException.class)</span><br><span class="line">    public Object businessExceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        log.error(&quot;[GlobalExceptionHandler][businessExceptionHandler] exception&quot;,e);</span><br><span class="line">        JsonResult jsonResult &#x3D; new JsonResult();</span><br><span class="line">        jsonResult.setCode(JsonResultCode.FAILURE);</span><br><span class="line">        jsonResult.setMessage(&quot;业务异常,请联系管理员&quot;);</span><br><span class="line">        return jsonResult;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    &#x2F;**</span><br><span class="line">     * 全局异常处理</span><br><span class="line">     * @param request</span><br><span class="line">     * @param response</span><br><span class="line">     * @param e</span><br><span class="line">     * @return</span><br><span class="line">     *&#x2F;</span><br><span class="line">    @ExceptionHandler(Exception.class)</span><br><span class="line">    public Object exceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)</span><br><span class="line">    &#123;</span><br><span class="line">        log.error(&quot;[GlobalExceptionHandler][exceptionHandler] exception&quot;,e);</span><br><span class="line">        JsonResult jsonResult &#x3D; new JsonResult();</span><br><span class="line">        jsonResult.setCode(JsonResultCode.FAILURE);</span><br><span class="line">        jsonResult.setMessage(&quot;系统错误,请联系管理员&quot;);</span><br><span class="line">        return jsonResult;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+<pre><code>@Slf4j
+@RestControllerAdvice
+public class GlobalExceptionHandler {
 
+    /**
+     * 没有登录
+     * @param request
+     * @param response
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(NoLoginException.class)
+    public Object noLoginExceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)
+    {
+        log.error(&quot;[GlobalExceptionHandler][noLoginExceptionHandler] exception&quot;,e);
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(JsonResultCode.NO_LOGIN);
+        jsonResult.setMessage(&quot;用户登录失效或者登录超时,请先登录&quot;);
+        return jsonResult;
+    }
 
+    /**
+     * 业务异常
+     * @param request
+     * @param response
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(ServiceException.class)
+    public Object businessExceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)
+    {
+        log.error(&quot;[GlobalExceptionHandler][businessExceptionHandler] exception&quot;,e);
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(JsonResultCode.FAILURE);
+        jsonResult.setMessage(&quot;业务异常,请联系管理员&quot;);
+        return jsonResult;
+    }
 
-<blockquote>
+    /**
+     * 全局异常处理
+     * @param request
+     * @param response
+     * @param e
+     * @return
+     */
+    @ExceptionHandler(Exception.class)
+    public Object exceptionHandler(HttpServletRequest request,HttpServletResponse response,Exception e)
+    {
+        log.error(&quot;[GlobalExceptionHandler][exceptionHandler] exception&quot;,e);
+        JsonResult jsonResult = new JsonResult();
+        jsonResult.setCode(JsonResultCode.FAILURE);
+        jsonResult.setMessage(&quot;系统错误,请联系管理员&quot;);
+        return jsonResult;
+    }
+}</code></pre><blockquote>
 <p> 原文链接：cnblogs.com/jurendage/p/11255197.html</p>
 </blockquote>
 </div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">简凡丶</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/01/15/1.%20Java%E5%9F%BA%E7%A1%80/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">http://yoursite.com/2020/01/15/1.%20Java%E5%9F%BA%E7%A1%80/%E5%85%A8%E5%B1%80%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">BestBear</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%BC%82%E5%B8%B8/">异常    </a></div><div class="post_share"><div class="social-share" data-image="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="prev-post pull_left"><a href="/2020/01/15/7.%20%E5%88%86%E5%B8%83%E5%BC%8F/Dubbo/"><img class="prev_cover lazyload" data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">上一篇</div><div class="prev_info"><span>Dubbo</span></div></a></div><div class="next-post pull_right"><a href="/2020/01/15/4.%20%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/RabbitMQ%E5%85%A5%E9%97%A8/"><img class="next_cover lazyload" data-src="https://p3.ssl.qhimg.com/bdr/__85/t01b11174e3eca6230a.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>RabbitMQ 入门</span></div></a></div></nav><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
