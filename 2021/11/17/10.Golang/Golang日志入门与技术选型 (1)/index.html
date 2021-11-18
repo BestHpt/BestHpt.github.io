@@ -1,0 +1,266 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Golang日志入门与技术选型 | BestBear</title><meta name="description" content="Golang日志入门与技术选型"><meta name="keywords" content="Golang"><meta name="author" content="简凡丶"><meta name="copyright" content="简凡丶"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Golang日志入门与技术选型"><meta name="twitter:description" content="Golang日志入门与技术选型"><meta name="twitter:image" content="https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png"><meta property="og:type" content="article"><meta property="og:title" content="Golang日志入门与技术选型"><meta property="og:url" content="http://yoursite.com/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/"><meta property="og:site_name" content="BestBear"><meta property="og:description" content="Golang日志入门与技术选型"><meta property="og:image" content="https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://yoursite.com/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/"><link rel="next" title="软件研发过程中的5种最常见的图" href="http://yoursite.com/2021/11/08/9.%E5%90%8E%E7%AB%AF%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB/%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%845%E7%A7%8D%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%BE/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: false,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">BestBear</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/01/13/ViKAkpCRr5xde1j.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">33</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#1、原生Logger"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">1、原生Logger</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-1-配置-logger配置"><span class="toc_mobile_items-number">1.1.</span> <span class="toc_mobile_items-text">1.1 配置 logger配置</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-1-flag-选项"><span class="toc_mobile_items-number">1.1.1.</span> <span class="toc_mobile_items-text">1.1.1 flag 选项</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-2-配置日志前缀"><span class="toc_mobile_items-number">1.1.2.</span> <span class="toc_mobile_items-text">1.1.2 配置日志前缀</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#1-1-3-配置日志输出位置"><span class="toc_mobile_items-number">1.1.3.</span> <span class="toc_mobile_items-text">1.1.3 配置日志输出位置</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-2-创建-logger"><span class="toc_mobile_items-number">1.2.</span> <span class="toc_mobile_items-text">1.2 创建 logger</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#1-3-总结"><span class="toc_mobile_items-number">1.3.</span> <span class="toc_mobile_items-text">1.3 总结</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#2、第三方日志库"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">2、第三方日志库</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-1-日志选型需求整理"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">2.1 日志选型需求整理</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-2-日志比对"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">2.2 日志比对</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-1-功能比对"><span class="toc_mobile_items-number">2.2.1.</span> <span class="toc_mobile_items-text">2.2.1 功能比对</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-2-3-性能数据比对"><span class="toc_mobile_items-number">2.2.2.</span> <span class="toc_mobile_items-text">2.2.3 性能数据比对</span></a></li></ol></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、原生Logger"><span class="toc-number">1.</span> <span class="toc-text">1、原生Logger</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-配置-logger配置"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 配置 logger配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-flag-选项"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 flag 选项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-配置日志前缀"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 配置日志前缀</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-配置日志输出位置"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 配置日志输出位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-创建-logger"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 创建 logger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-总结"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 总结</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、第三方日志库"><span class="toc-number">2.</span> <span class="toc-text">2、第三方日志库</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-日志选型需求整理"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 日志选型需求整理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-日志比对"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 日志比对</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-1-功能比对"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.2.1 功能比对</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-3-性能数据比对"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2.3 性能数据比对</span></a></li></ol></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png)"><div id="post-info"><div id="post-title"><div class="posttitle">Golang日志入门与技术选型</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2021-11-17<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2021-11-17</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Golang/">Golang</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">2.2k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 7 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><blockquote>
+<p>参考文档：<a href="https://liwenzhou.com/posts/Go/zap/" target="_blank" rel="noopener">https://liwenzhou.com/posts/Go/zap/</a></p>
+</blockquote>
+<p>无论是软件开发的调试阶段还是软件上线之后的运行阶段，日志一直都是非常重要的一个环节，我们也应该养成在程序中记录日志的好习惯。<br>Go 语言内置的<code>log</code>包实现了简单的日志服务。本文介绍了标准库<code>log</code>的基本使用和第三日志库的选型和使用。</p>
+<h1 id="1、原生Logger"><a href="#1、原生Logger" class="headerlink" title="1、原生Logger"></a>1、原生Logger</h1><p>log 包定义了 Logger 类型，该类型提供了一些格式化输出的方法。本包也提供了一个预定义的 “标准”logger，可以通过调用函数<code>Print系列</code>(Print|Printf|Println）、<code>Fatal系列</code>（Fatal|Fatalf|Fatalln）、和<code>Panic系列</code>（Panic|Panicf|Panicln）来使用，比自行创建一个 logger 对象更容易使用。</p>
+<p>例如，我们可以像下面的代码一样直接通过<code>log</code>包来调用上面提到的方法，默认它们会将日志信息打印到终端界面：</p>
+<pre><code class="go">package main
+
+import (
+    &quot;log&quot;
+)
+
+func main() {
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+    v := &quot;很普通的&quot;
+    log.Printf(&quot;这是一条%s日志。\n&quot;, v)
+    log.Fatalln(&quot;这是一条会触发fatal的日志。&quot;)
+    log.Panicln(&quot;这是一条会触发panic的日志。&quot;)
+}</code></pre>
+<p>编译并执行上面的代码会得到如下输出：</p>
+<pre><code>2017/06/19 14:04:17 这是一条很普通的日志。
+2017/06/19 14:04:17 这是一条很普通的日志。
+2017/06/19 14:04:17 这是一条会触发fatal的日志。</code></pre><p>logger 会打印每条日志信息的日期、时间，默认输出到系统的标准错误。Fatal 系列函数会在写入日志信息后调用 os.Exit(1)。Panic 系列函数会在写入日志信息后 panic。</p>
+<h2 id="1-1-配置-logger配置"><a href="#1-1-配置-logger配置" class="headerlink" title="1.1 配置 logger配置"></a>1.1 配置 logger配置</h2><p>默认情况下的 logger 只会提供日志的时间信息，但是很多情况下我们希望得到更多信息，比如记录该日志的文件名和行号等。<code>log</code>标准库中为我们提供了定制这些设置的方法。<br><code>log</code>标准库中的<code>Flags</code>函数会返回标准 logger 的输出配置，而<code>SetFlags</code>函数用来设置标准 logger 的输出配置。</p>
+<pre><code>func Flags() int
+func SetFlags(flag int)</code></pre><h3 id="1-1-1-flag-选项"><a href="#1-1-1-flag-选项" class="headerlink" title="1.1.1 flag 选项"></a>1.1.1 flag 选项</h3><p><code>log</code>标准库提供了如下的 flag 选项，它们是一系列定义好的常量。</p>
+<pre><code class="go">const (
+    // 控制输出日志信息的细节，不能控制输出的顺序和格式。
+    // 输出的日志在每一项后会有一个冒号分隔：例如2009/01/23 01:23:23.123123 /a/b/c/d.go:23: message
+    Ldate         = 1 &lt;&lt; iota     // 日期：2009/01/23
+    Ltime                         // 时间：01:23:23
+    Lmicroseconds                 // 微秒级别的时间：01:23:23.123123（用于增强Ltime位）
+    Llongfile                     // 文件全路径名+行号： /a/b/c/d.go:23
+    Lshortfile                    // 文件名+行号：d.go:23（会覆盖掉Llongfile）
+    LUTC                          // 使用UTC时间
+    LstdFlags     = Ldate | Ltime // 标准logger的初始值
+)</code></pre>
+<p>下面我们在记录日志之前先设置一下标准 logger 的输出选项如下：</p>
+<pre><code class="go">func main() {
+    log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+}</code></pre>
+<p>编译执行后得到的输出结果如下：</p>
+<pre><code class="go">2017/06/19 14:05:17.494943 .../log_demo/main.go:11: 这是一条很普通的日志。</code></pre>
+<h3 id="1-1-2-配置日志前缀"><a href="#1-1-2-配置日志前缀" class="headerlink" title="1.1.2 配置日志前缀"></a>1.1.2 配置日志前缀</h3><p><code>log</code>标准库中还提供了关于日志信息前缀的两个方法：</p>
+<pre><code class="go">func Prefix() string
+func SetPrefix(prefix string)</code></pre>
+<p>其中<code>Prefix</code>函数用来查看标准 logger 的输出前缀，<code>SetPrefix</code>函数用来设置输出前缀。</p>
+<pre><code class="go">func main() {
+    log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+    log.SetPrefix(&quot;[小王子]&quot;)
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+}</code></pre>
+<p>上面的代码输出如下：</p>
+<pre><code>[小王子]2017/06/19 14:05:57.940542 .../log_demo/main.go:13: 这是一条很普通的日志。</code></pre><p>这样我们就能够在代码中为我们的日志信息添加指定的前缀，方便之后对日志信息进行检索和处理。</p>
+<h3 id="1-1-3-配置日志输出位置"><a href="#1-1-3-配置日志输出位置" class="headerlink" title="1.1.3 配置日志输出位置"></a>1.1.3 配置日志输出位置</h3><pre><code class="go">func SetOutput(w io.Writer)</code></pre>
+<p><code>SetOutput</code>函数用来设置标准 logger 的输出目的地，默认是标准错误输出。</p>
+<p>例如，下面的代码会把日志输出到同目录下的<code>xx.log</code>文件中。</p>
+<pre><code class="go">func main() {
+    logFile, err := os.OpenFile(&quot;./xx.log&quot;, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+    if err != nil {
+        fmt.Println(&quot;open log file failed, err:&quot;, err)
+        return
+    }
+    log.SetOutput(logFile)
+    log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+    log.SetPrefix(&quot;[小王子]&quot;)
+    log.Println(&quot;这是一条很普通的日志。&quot;)
+}</code></pre>
+<p>如果你要使用标准的 logger，我们通常会把上面的配置操作写到<code>init</code>函数中。</p>
+<pre><code class="go">func init() {
+    logFile, err := os.OpenFile(&quot;./xx.log&quot;, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0644)
+    if err != nil {
+        fmt.Println(&quot;open log file failed, err:&quot;, err)
+        return
+    }
+    log.SetOutput(logFile)
+    log.SetFlags(log.Llongfile | log.Lmicroseconds | log.Ldate)
+}</code></pre>
+<h2 id="1-2-创建-logger"><a href="#1-2-创建-logger" class="headerlink" title="1.2 创建 logger"></a>1.2 创建 logger</h2><p><code>log</code>标准库中还提供了一个创建新 logger 对象的构造函数–<code>New</code>，支持我们创建自己的 logger 示例。<code>New</code>函数的签名如下：</p>
+<pre><code class="go">func New(out io.Writer, prefix string, flag int) *Logger</code></pre>
+<p>New 创建一个 Logger 对象。其中，参数 out 设置日志信息写入的目的地。参数 prefix 会添加到生成的每一条日志前面。参数 flag 定义日志的属性（时间、文件等等）。</p>
+<p>举个例子：</p>
+<pre><code class="go">func main() {
+    logger := log.New(os.Stdout, &quot;&lt;New&gt;&quot;, log.Lshortfile|log.Ldate|log.Ltime)
+    logger.Println(&quot;这是自定义的logger记录的日志。&quot;)
+}</code></pre>
+<p>将上面的代码编译执行之后，得到结果如下：</p>
+<pre><code>&lt;New&gt;2017/06/19 14:06:51 main.go:34: 这是自定义的logger记录的日志。</code></pre><h2 id="1-3-总结"><a href="#1-3-总结" class="headerlink" title="1.3 总结"></a>1.3 总结</h2><p>Go 内置的 log 库功能有限，例如无法满足记录不同级别日志的情况，我们在实际的项目中根据自己的需要选择使用第三方的日志库，如 <a href="https://github.com/sirupsen/logrus" target="_blank" rel="noopener">logrus</a>、<a href="https://github.com/uber-go/zap" target="_blank" rel="noopener">zap</a> 等。<br>​</p>
+<h1 id="2、第三方日志库"><a href="#2、第三方日志库" class="headerlink" title="2、第三方日志库"></a>2、第三方日志库</h1><h2 id="2-1-日志选型需求整理"><a href="#2-1-日志选型需求整理" class="headerlink" title="2.1 日志选型需求整理"></a>2.1 日志选型需求整理</h2><ol>
+<li>日志写入性能</li>
+<li>日志级别分离，并且可分离成多个日志文件</li>
+<li>可读性与结构化，Json格式或有分隔符，方便后续的日志采集、监控等</li>
+<li>能够打印基本信息，如调用文件 / 函数名和行号，日志时间等</li>
+<li>日志书写友好，支持通过context自动log trace等</li>
+<li>文件切割，可按小时、天进行日志拆分，或者按文件大小</li>
+<li>文件定时删除</li>
+<li>开源性，与其他开源框架支持较好</li>
+<li>多输出 － 同时支持标准输出，文件等</li>
+</ol>
+<h2 id="2-2-日志比对"><a href="#2-2-日志比对" class="headerlink" title="2.2 日志比对"></a>2.2 日志比对</h2><h3 id="2-2-1-功能比对"><a href="#2-2-1-功能比对" class="headerlink" title="2.2.1 功能比对"></a>2.2.1 功能比对</h3><blockquote>
+<p>参考文档：</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/38a67ab593ee" target="_blank" rel="noopener">https://www.jianshu.com/p/38a67ab593ee</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/141321801" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/141321801</a></li>
+<li>zerolog：<a href="https://zhuanlan.zhihu.com/p/136296821" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/136296821</a></li>
+</ul>
+</blockquote>
+<p>搜看的许多日志框架，最后剩下两款目前明显性能比较好的Uber开源的Zap和ZeroLog，参考github中开源项目日志引用情况和日志周边框架支持最终选用Zap。</p>
+<table>
+<thead>
+<tr>
+<th>需求点</th>
+<th>go.uber.org/zap(国内一些开源项目见得比较多、性能也不错、推荐)</th>
+<th>github.com/rs/zerolog</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>日志写入性能</td>
+<td>较高</td>
+<td>高</td>
+</tr>
+<tr>
+<td>日志级别分离</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>可读性 (Json格式或有分隔符，方便后续的日志采集、监控等)</td>
+<td>json格式</td>
+<td>json格式</td>
+</tr>
+<tr>
+<td>易用性：接入方便，书写方便（格式化），可Hook注入trace_id等</td>
+<td>自动接入时间、代码信息、日志级别，支持Hook</td>
+<td>可支持接入时间、代码信息、日志级别等，支持Hook</td>
+</tr>
+<tr>
+<td>文件切割 (可按时间、文件大小日志拆分)</td>
+<td>不支持，可通过lumberjack实现</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>定时删除</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+<tr>
+<td>多输出 － 同时支持标准输出，文件等</td>
+<td>支持</td>
+<td>支持</td>
+</tr>
+</tbody></table>
+<p> </p>
+<h3 id="2-2-3-性能数据比对"><a href="#2-2-3-性能数据比对" class="headerlink" title="2.2.3 性能数据比对"></a>2.2.3 性能数据比对</h3><p>根据Uber-go Zap的文档，它的性能比类似的结构化日志包更好——也比标准库更快。 以下是Zap发布的基准测试信息<br>记录一条消息和10个字段:<img alt="image.png" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1636515725486-2879df05-7f5f-4023-b2d3-891955d989ad.png" class="lazyload"><br>记录一个静态字符串，没有任何上下文或printf风格的模板：<br><img alt="image.png" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1636515725562-74541015-3c68-455f-a4ce-3ecee820248a.png" class="lazyload"><br>​</p>
+<p>下一篇我们会来讲讲高性能日志框架Zap的使用，以及如何满足我们对于日志框架丰富的使用需求，我们下期见，Peace😘</p>
+<blockquote>
+<p>我是简凡，一个励志用最简单的语言，描述最复杂问题的新时代农民工。<strong>求点赞，求关注</strong>，如果你对此篇文章有什么疑惑，欢迎在我的微信公众号中留言，我还可以为你提供以下帮助：</p>
+<ul>
+<li>帮助建立自己的知识体系</li>
+<li>互联网真实高并发场景实战讲解</li>
+<li>不定期分享Golang、Java相关业内的经典场景实践</li>
+</ul>
+</blockquote>
+<p>我的博客：<a href="https://besthpt.github.io/" target="_blank" rel="noopener">https://besthpt.github.io/</a></p>
+<blockquote>
+<p>我的微信：bestbear666<br>微信公众号：<br><img alt="image.png" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1633094381436-599e5e08-34bf-4d7a-88fb-e9a4b30ebea3.png" class="lazyload"></p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">简凡丶</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/">http://yoursite.com/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">BestBear</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Golang/">Golang    </a></div><div class="post_share"><div class="social-share" data-image="https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2021/11/08/9.%E5%90%8E%E7%AB%AF%E5%BF%83%E5%BE%97%E5%88%86%E4%BA%AB/%E8%BD%AF%E4%BB%B6%E7%A0%94%E5%8F%91%E8%BF%87%E7%A8%8B%E4%B8%AD%E7%9A%845%E7%A7%8D%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E5%9B%BE/"><img class="next_cover lazyload" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/20180313123623_GvMNU.jpeg" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>软件研发过程中的5种最常见的图</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/10/29/10.Golang/如何进行golang性能优化/" title="《一文教会你如何进行Golang服务优化》"><img class="relatedPosts_cover lazyload"data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/golang.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-10-29</div><div class="relatedPosts_title">《一文教会你如何进行Golang服务优化》</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/05/10.Golang/最佳实践之Golang错误处理/" title="最佳实践之Golang错误处理"><img class="relatedPosts_cover lazyload"data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/src=http___i2.wp.com_techlogitic.net_wp-content_uploads_2017_05_error-924-1.jpg_fit=950,500&ssl=1&refer=http___i2.wp.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-11-05</div><div class="relatedPosts_title">最佳实践之Golang错误处理</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'POlJROSsMvr6BdUPhPaqFdlj-gzGzoHsz',
+  appKey:'JhPOeqEkpBUGVUNuYYxRCvUt',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 简凡丶</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2d_models/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2d_models/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body></html>
