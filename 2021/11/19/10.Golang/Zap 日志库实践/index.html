@@ -1,0 +1,574 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5"><title>Zap日志库实践 | BestBear</title><meta name="description" content="Zap日志库实践"><meta name="keywords" content="Golang"><meta name="author" content="简凡丶"><meta name="copyright" content="简凡丶"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="preconnect" href="//cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin><link rel="preconnect" href="//busuanzi.ibruce.info"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Zap日志库实践"><meta name="twitter:description" content="Zap日志库实践"><meta name="twitter:image" content="https://codebear-images.oss-cn-beijing.aliyuncs.com/{F8913C99-633F-3853-A3EE-D82950B5ED74}.jpg"><meta property="og:type" content="article"><meta property="og:title" content="Zap日志库实践"><meta property="og:url" content="http://yoursite.com/2021/11/19/10.Golang/Zap%20%E6%97%A5%E5%BF%97%E5%BA%93%E5%AE%9E%E8%B7%B5/"><meta property="og:site_name" content="BestBear"><meta property="og:description" content="Zap日志库实践"><meta property="og:image" content="https://codebear-images.oss-cn-beijing.aliyuncs.com/{F8913C99-633F-3853-A3EE-D82950B5ED74}.jpg"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://cdn.jsdelivr.net/npm/js-cookie/dist/js.cookie.min.js"></script><script>const autoChangeMode = 'false'
+var t = Cookies.get("theme");
+if (autoChangeMode == '1'){
+const isDarkMode = window.matchMedia("(prefers-color-scheme: dark)").matches
+const isLightMode = window.matchMedia("(prefers-color-scheme: light)").matches
+const isNotSpecified = window.matchMedia("(prefers-color-scheme: no-preference)").matches
+const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+if (t === undefined){
+  if (isLightMode) activateLightMode()
+  else if (isDarkMode) activateDarkMode()
+  else if (isNotSpecified || hasNoSupport){
+    console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+    now = new Date();
+    hour = now.getHours();
+    isNight = hour < 6 || hour >= 18
+    isNight ? activateDarkMode() : activateLightMode()
+}
+} else if (t == 'light') activateLightMode()
+else activateDarkMode()
+
+
+} else if (autoChangeMode == '2'){
+  now = new Date();
+  hour = now.getHours();
+  isNight = hour < 6 || hour >= 18
+  if(t === undefined) isNight? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode() 
+} else {
+  if ( t == 'dark' ) activateDarkMode()
+  else if ( t == 'light') activateLightMode()
+}
+
+function activateDarkMode(){
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+    document.querySelector('meta[name="theme-color"]').setAttribute('content','#000')
+  }
+}
+function activateLightMode(){
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null){
+  document.querySelector('meta[name="theme-color"]').setAttribute('content','#fff')
+  }
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css"><link rel="canonical" href="http://yoursite.com/2021/11/19/10.Golang/Zap%20%E6%97%A5%E5%BF%97%E5%BA%93%E5%AE%9E%E8%B7%B5/"><link rel="next" title="Golang日志入门与技术选型" href="http://yoursite.com/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"search.xml","languages":{"hits_empty":"找不到您查询的内容:${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"cookieDomain":"https://xxx/","msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简"},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    title: 'Snackbar.bookmark.title',
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime_unit: '天',
+  runtime: true,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: true,
+  fancybox: false,
+  Snackbar: {"bookmark":{"title":"Snackbar.bookmark.title","message_prev":"按","message_next":"键将本页加入书签"},"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#2d3035","position":"bottom-left"},
+  baiduPush: false,
+  isHome: false,
+  isPost: true
+  
+}</script><meta name="generator" content="Hexo 4.2.0"></head><body><header> <div id="page-header"><span class="pull_left" id="blog_name"><a class="blog_title" id="site-name" href="/">BestBear</a></span><span class="toggle-menu pull_right close"><a class="site-page"><i class="fa fa-bars fa-fw" aria-hidden="true"></i></a></span><span class="pull_right menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></span><span class="pull_right" id="search_button"><a class="site-page social-icon search"><i class="fa fa-search fa-fw"></i><span> 搜索</span></a></span></div></header><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="https://i.loli.net/2020/01/13/ViKAkpCRr5xde1j.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">34</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">16</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">14</div></a></div></div></div><hr><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fa fa-folder-open"></i><span> 文章分类</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fa fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> 时间轴</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> 友链</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fa fa-coffee"></i><span> 关于作者</span></a></div><div class="menus_item"><a class="site-page" href="/guestsay/"><i class="fa-fw fa-coffee"></i><span> 留言板</span></a></div></div></div><div id="mobile-sidebar-toc"><div class="toc_mobile_headline">目录</div><div class="sidebar-toc__content"><ol class="toc_mobile_items"><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#1、日志需求"><span class="toc_mobile_items-number">1.</span> <span class="toc_mobile_items-text">1、日志需求</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#2、Uber-go-Zap"><span class="toc_mobile_items-number">2.</span> <span class="toc_mobile_items-text">2、Uber-go Zap</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-1-为什么选择-Uber-go-zap"><span class="toc_mobile_items-number">2.1.</span> <span class="toc_mobile_items-text">2.1 为什么选择 Uber-go zap</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-2-安装"><span class="toc_mobile_items-number">2.2.</span> <span class="toc_mobile_items-text">2.2 安装</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-3-配置-Zap-Logger"><span class="toc_mobile_items-number">2.3.</span> <span class="toc_mobile_items-text">2.3 配置 Zap Logger</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-3-1-Logger"><span class="toc_mobile_items-number">2.3.1.</span> <span class="toc_mobile_items-text">2.3.1 Logger</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-3-2-Sugared-Logger"><span class="toc_mobile_items-number">2.3.2.</span> <span class="toc_mobile_items-text">2.3.2 Sugared Logger</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#2-4-定制-logger"><span class="toc_mobile_items-number">2.4.</span> <span class="toc_mobile_items-text">2.4 定制 logger</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-1-将日志写入文件而不是终端"><span class="toc_mobile_items-number">2.4.1.</span> <span class="toc_mobile_items-text">2.4.1 将日志写入文件而不是终端</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-2-将-JSON-Encoder-更改为普通的-Log-Encoder"><span class="toc_mobile_items-number">2.4.2.</span> <span class="toc_mobile_items-text">2.4.2 将 JSON Encoder 更改为普通的 Log Encoder</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-3"><a class="toc_mobile_items-link" href="#2-4-3-更改时间编码并添加调用者详细信息"><span class="toc_mobile_items-number">2.4.3.</span> <span class="toc_mobile_items-text">2.4.3 更改时间编码并添加调用者详细信息</span></a></li></ol></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#3、使用-Lumberjack-进行日志切割归档"><span class="toc_mobile_items-number">3.</span> <span class="toc_mobile_items-text">3、使用 Lumberjack 进行日志切割归档</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-1-安装"><span class="toc_mobile_items-number">3.1.</span> <span class="toc_mobile_items-text">3.1 安装</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-2-zap-logger中加入Lumberjack"><span class="toc_mobile_items-number">3.2.</span> <span class="toc_mobile_items-text">3.2 zap logger中加入Lumberjack</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#3-3-测试"><span class="toc_mobile_items-number">3.3.</span> <span class="toc_mobile_items-text">3.3 测试</span></a></li></ol></li><li class="toc_mobile_items-item toc_mobile_items-level-1"><a class="toc_mobile_items-link" href="#4、使用rotatelogs实现日志文件处理"><span class="toc_mobile_items-number">4.</span> <span class="toc_mobile_items-text">4、使用rotatelogs实现日志文件处理</span></a><ol class="toc_mobile_items-child"><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-1-当前问题"><span class="toc_mobile_items-number">4.1.</span> <span class="toc_mobile_items-text">4.1 当前问题</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-2-日志工具类："><span class="toc_mobile_items-number">4.2.</span> <span class="toc_mobile_items-text">4.2 日志工具类：</span></a></li><li class="toc_mobile_items-item toc_mobile_items-level-2"><a class="toc_mobile_items-link" href="#4-3-测试"><span class="toc_mobile_items-number">4.3.</span> <span class="toc_mobile_items-text">4.3 测试</span></a></li></ol></li></ol></div></div></div><div id="body-wrap"><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true">     </i><div class="auto_open" id="sidebar"><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1、日志需求"><span class="toc-number">1.</span> <span class="toc-text">1、日志需求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2、Uber-go-Zap"><span class="toc-number">2.</span> <span class="toc-text">2、Uber-go Zap</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-为什么选择-Uber-go-zap"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 为什么选择 Uber-go zap</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-安装"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-配置-Zap-Logger"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 配置 Zap Logger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-1-Logger"><span class="toc-number">2.3.1.</span> <span class="toc-text">2.3.1 Logger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-2-Sugared-Logger"><span class="toc-number">2.3.2.</span> <span class="toc-text">2.3.2 Sugared Logger</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-定制-logger"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 定制 logger</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-1-将日志写入文件而不是终端"><span class="toc-number">2.4.1.</span> <span class="toc-text">2.4.1 将日志写入文件而不是终端</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-2-将-JSON-Encoder-更改为普通的-Log-Encoder"><span class="toc-number">2.4.2.</span> <span class="toc-text">2.4.2 将 JSON Encoder 更改为普通的 Log Encoder</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-3-更改时间编码并添加调用者详细信息"><span class="toc-number">2.4.3.</span> <span class="toc-text">2.4.3 更改时间编码并添加调用者详细信息</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3、使用-Lumberjack-进行日志切割归档"><span class="toc-number">3.</span> <span class="toc-text">3、使用 Lumberjack 进行日志切割归档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-安装"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-zap-logger中加入Lumberjack"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 zap logger中加入Lumberjack</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-测试"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4、使用rotatelogs实现日志文件处理"><span class="toc-number">4.</span> <span class="toc-text">4、使用rotatelogs实现日志文件处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-当前问题"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 当前问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-日志工具类："><span class="toc-number">4.2.</span> <span class="toc-text">4.2 日志工具类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-测试"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 测试</span></a></li></ol></li></ol></div></div></div><main id="content-outer"><div id="top-container" style="background-image: url(https://codebear-images.oss-cn-beijing.aliyuncs.com/{F8913C99-633F-3853-A3EE-D82950B5ED74}.jpg)"><div id="post-info"><div id="post-title"><div class="posttitle">Zap日志库实践</div></div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 发表于 2021-11-19<span class="post-meta__separator">|</span><i class="fa fa-history fa-fw" aria-hidden="true"></i> 更新于 2021-11-19</time><span class="post-meta__separator">|</span><span><i class="fa fa-inbox post-meta__icon fa-fw" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Golang/">Golang</a></span><div class="post-meta-wordcount"><i class="fa fa-file-word-o post-meta__icon fa-fw" aria-hidden="true"></i><span>字数总计:</span><span class="word-count">4k</span><span class="post-meta__separator">|</span><i class="fa fa-clock-o post-meta__icon fa-fw" aria-hidden="true"></i><span>阅读时长: 18 分钟</span><div class="post-meta-pv-cv"><span class="post-meta__separator">|</span><span><i class="fa fa-eye post-meta__icon fa-fw" aria-hidden="true"> </i>阅读量:</span><span id="busuanzi_value_page_pv"></span></div></div></div></div></div><div class="layout layout_post" id="content-inner">   <article id="post"><div class="article-container" id="post-content"><p>本文详细介绍了非常流行的 Uber 开源的 zap 日志库，同时介绍了如何搭配 Lumberjack、Rotatelogs 实现日志的切割和归档。</p>
+<h1 id="1、日志需求"><a href="#1、日志需求" class="headerlink" title="1、日志需求"></a>1、日志需求</h1><p>我们重温一下一个好的日志记录器都需要能够提供下面哪些功能？</p>
+<ol>
+<li>良好日志写入性能</li>
+<li>支持不同的日志级别。并且可分离成多个日志文件</li>
+<li>多输出 － 同时支持标准输出，文件等</li>
+<li>能够打印基本信息，如调用文件 / 函数名和行号，日志时间等</li>
+<li>可读性与结构化，Json格式或有分隔符，方便后续的日志采集、监控等</li>
+<li>文件切割，可按小时、天进行日志拆分，或者按文件大小</li>
+<li>日志书写友好，支持通过context自动log trace等</li>
+<li>文件定时删除</li>
+<li>开源性，与其他开源框架支持较好</li>
+</ol>
+<h1 id="2、Uber-go-Zap"><a href="#2、Uber-go-Zap" class="headerlink" title="2、Uber-go Zap"></a>2、Uber-go Zap</h1><p><a href="https://github.com/uber-go/zap" target="_blank" rel="noopener">Zap</a> 是非常快的、结构化的，分日志级别的 Go 日志库。</p>
+<h2 id="2-1-为什么选择-Uber-go-zap"><a href="#2-1-为什么选择-Uber-go-zap" class="headerlink" title="2.1 为什么选择 Uber-go zap"></a>2.1 为什么选择 Uber-go zap</h2><p>有关技术选型可以见：<a href="https://www.yuque.com/jinsesihuanian/gpwou5/aduc5c" target="_blank" rel="noopener">https://www.yuque.com/jinsesihuanian/gpwou5/aduc5c</a><br>​</p>
+<h2 id="2-2-安装"><a href="#2-2-安装" class="headerlink" title="2.2 安装"></a>2.2 安装</h2><p>运行下面的命令安装 zap</p>
+<pre><code class="go">go get -u go.uber.org/zap</code></pre>
+<h2 id="2-3-配置-Zap-Logger"><a href="#2-3-配置-Zap-Logger" class="headerlink" title="2.3 配置 Zap Logger"></a>2.3 配置 Zap Logger</h2><p>Zap 提供了两种类型的日志记录器—<code>Sugared Logger</code>和<code>Logger</code>。</p>
+<p>在性能很好但不是很关键的上下文中，使用<code>SugaredLogger</code>。它比其他结构化日志记录包快 4-10 倍，并且支持结构化和 printf 风格的日志记录。<br>在每一微秒和每一次内存分配都很重要的上下文中，使用<code>Logger</code>。它甚至比<code>SugaredLogger</code>更快，内存分配次数也更少，但它只支持强类型的结构化日志记录。</p>
+<h3 id="2-3-1-Logger"><a href="#2-3-1-Logger" class="headerlink" title="2.3.1 Logger"></a>2.3.1 Logger</h3><ul>
+<li>通过调用<code>zap.NewProduction()</code>/<code>zap.NewDevelopment()</code>或者<code>zap.Example()</code>创建一个 Logger。</li>
+<li>上面的每一个函数都将创建一个 logger。唯一的区别在于它将记录的信息不同。例如 production logger 默认记录调用函数信息、日期和时间等。</li>
+<li>通过 Logger 调用 Info/Error 等。</li>
+<li>默认情况下日志都会打印到应用程序的 console 界面。</li>
+</ul>
+<pre><code class="go">var logger *zap.Logger
+
+func main() {
+    InitLogger()
+  defer logger.Sync()
+    simpleHttpGet(&quot;www.baidu.com&quot;)
+    simpleHttpGet(&quot;http://www.baidu.com&quot;)
+}
+
+func InitLogger() {
+    logger, _ = zap.NewProduction()
+}
+
+func simpleHttpGet(url string) {
+    resp, err := http.Get(url)
+    if err != nil {
+        logger.Error(
+            &quot;Error fetching url..&quot;,
+            zap.String(&quot;url&quot;, url),
+            zap.Error(err))
+    } else {
+        logger.Info(&quot;Success..&quot;,
+            zap.String(&quot;statusCode&quot;, resp.Status),
+            zap.String(&quot;url&quot;, url))
+        resp.Body.Close()
+    }
+}</code></pre>
+<p>在上面的代码中，我们首先创建了一个 Logger，然后使用 Info/ Error 等 Logger 方法记录消息。</p>
+<p>日志记录器方法的语法是这样的：</p>
+<pre><code>func (log *Logger) MethodXXX(msg string, fields ...Field)</code></pre><p>其中<code>MethodXXX</code>是一个可变参数函数，可以是 Info / Error/ Debug / Panic 等。每个方法都接受一个消息字符串和任意数量的<code>zapcore.Field</code>场参数。</p>
+<p>每个<code>zapcore.Field</code>其实就是一组键值对参数。</p>
+<p>我们执行上面的代码会得到如下输出结果：</p>
+<pre><code class="go">{&quot;level&quot;:&quot;error&quot;,&quot;ts&quot;:1572159218.912792,&quot;caller&quot;:&quot;zap_demo/temp.go:25&quot;,&quot;msg&quot;:&quot;Error fetching url..&quot;,&quot;url&quot;:&quot;www.baidu.com&quot;,&quot;error&quot;:&quot;Get www.sogo.com: unsupported protocol scheme \&quot;\&quot;&quot;,&quot;stacktrace&quot;:&quot;main.simpleHttpGet\n\t/Users/q1mi/zap_demo/temp.go:25\nmain.main\n\t/Users/q1mi/zap_demo/temp.go:14\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1572159219.1227388,&quot;caller&quot;:&quot;zap_demo/temp.go:30&quot;,&quot;msg&quot;:&quot;Success..&quot;,&quot;statusCode&quot;:&quot;200 OK&quot;,&quot;url&quot;:&quot;http://www.baidu.com&quot;}</code></pre>
+<h3 id="2-3-2-Sugared-Logger"><a href="#2-3-2-Sugared-Logger" class="headerlink" title="2.3.2 Sugared Logger"></a>2.3.2 Sugared Logger</h3><p>现在让我们使用 Sugared Logger 来实现相同的功能。</p>
+<ul>
+<li>大部分的实现基本都相同。</li>
+<li>惟一的区别是，我们通过调用主 logger 的<code>. Sugar()</code>方法来获取一个<code>SugaredLogger</code>。</li>
+<li>然后使用<code>SugaredLogger</code>以<code>printf</code>格式记录语句</li>
+</ul>
+<p>下面是修改过后使用<code>SugaredLogger</code>代替<code>Logger</code>的代码：</p>
+<pre><code class="go">var sugarLogger *zap.SugaredLogger
+
+func main() {
+    InitLogger()
+    defer sugarLogger.Sync()
+    simpleHttpGet(&quot;www.baidu.com&quot;)
+    simpleHttpGet(&quot;http://www.baidu.com&quot;)
+}
+
+func InitLogger() {
+  logger, _ := zap.NewProduction()
+    sugarLogger = logger.Sugar()
+}
+
+func simpleHttpGet(url string) {
+    sugarLogger.Debugf(&quot;Trying to hit GET request for %s&quot;, url)
+    resp, err := http.Get(url)
+    if err != nil {
+        sugarLogger.Errorf(&quot;Error fetching URL %s : Error = %s&quot;, url, err)
+    } else {
+        sugarLogger.Infof(&quot;Success! statusCode = %s for URL %s&quot;, resp.Status, url)
+        resp.Body.Close()
+    }
+}</code></pre>
+<p>当你执行上面的代码会得到如下输出：</p>
+<pre><code class="go">{&quot;level&quot;:&quot;error&quot;,&quot;ts&quot;:1572159149.923002,&quot;caller&quot;:&quot;logic/temp2.go:27&quot;,&quot;msg&quot;:&quot;Error fetching URL www.baidu.com : Error = Get www.baidu.com: unsupported protocol scheme \&quot;\&quot;&quot;,&quot;stacktrace&quot;:&quot;main.simpleHttpGet\n\t/Users/zap_demo/logic/temp2.go:27\nmain.main\n\t/Users/zap_demo/logic/temp2.go:14\nruntime.main\n\t/usr/local/go/src/runtime/proc.go:203&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1572159150.192585,&quot;caller&quot;:&quot;logic/temp2.go:29&quot;,&quot;msg&quot;:&quot;Success! statusCode = 200 OK for URL http://www.baidu.com&quot;}</code></pre>
+<p>你应该注意到的了，到目前为止这两个 logger 都打印输出 JSON 结构格式。<br>在本博客的后面部分，我们将更详细地讨论 SugaredLogger，并了解如何进一步配置它。</p>
+<h2 id="2-4-定制-logger"><a href="#2-4-定制-logger" class="headerlink" title="2.4 定制 logger"></a>2.4 定制 logger</h2><h3 id="2-4-1-将日志写入文件而不是终端"><a href="#2-4-1-将日志写入文件而不是终端" class="headerlink" title="2.4.1 将日志写入文件而不是终端"></a>2.4.1 将日志写入文件而不是终端</h3><p>我们要做的第一个更改是把日志写入文件，而不是打印到应用程序控制台。<br>​</p>
+<ul>
+<li>我们将使用<code>zap.New(…)</code>方法来手动传递所有配置，而不是使用像<code>zap.NewProduction()</code>这样的预置方法来创建 logger。<pre><code>func New(core zapcore.Core, options ...Option) *Logger</code></pre></li>
+</ul>
+<p><code>zapcore.Core</code>需要三个配置——<code>Encoder</code>，<code>WriteSyncer</code>，<code>LogLevel</code>。</p>
+<p>1.<strong>Encoder</strong>: 编码器 (<strong>写入日志格式</strong>)。我们将使用开箱即用的<code>NewJSONEncoder()</code>，并使用预先设置的<code>ProductionEncoderConfig()</code>。</p>
+<pre><code>zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig())</code></pre><p>2.<strong>WriterSyncer</strong> ：指定<strong>日志写到哪里</strong>去。我们使用<code>zapcore.AddSync()</code>函数并且将打开的文件句柄传进去。</p>
+<pre><code>file, _ := os.Create(&quot;./test.log&quot;)
+   writeSyncer := zapcore.AddSync(file)</code></pre><p>3.<strong>Log Level</strong>：哪种级别的日志将被写入。<br>我们将修改上述部分中的 Logger 代码，并重写<code>InitLogger()</code>方法。其余方法—<code>main()</code> /<code>SimpleHttpGet()</code>保持不变。</p>
+<pre><code class="go">func InitLogger() {
+    writeSyncer := getLogWriter()
+    encoder := getEncoder()
+    core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
+
+    logger := zap.New(core)
+    sugarLogger = logger.Sugar()
+}
+
+func getEncoder() zapcore.Encoder {
+    return zapcore.NewJSONEncoder(zap.NewProductionEncoderConfig())
+}
+
+func getLogWriter() zapcore.WriteSyncer {
+    file, _ := os.Create(&quot;./test.log&quot;)
+    return zapcore.AddSync(file)
+}</code></pre>
+<p>当使用这些修改过的 logger 配置调用上述部分的<code>main()</code>函数时，以下输出将打印在文件——<code>test.log</code>中。</p>
+<pre><code>{&quot;level&quot;:&quot;debug&quot;,&quot;ts&quot;:1572160754.994731,&quot;msg&quot;:&quot;Trying to hit GET request for www.baidu.com&quot;}
+{&quot;level&quot;:&quot;error&quot;,&quot;ts&quot;:1572160754.994982,&quot;msg&quot;:&quot;Error fetching URL www.sogo.com : Error = Get www.baidu.com: unsupported protocol scheme \&quot;\&quot;&quot;}
+{&quot;level&quot;:&quot;debug&quot;,&quot;ts&quot;:1572160754.994996,&quot;msg&quot;:&quot;Trying to hit GET request for http://www.baidu.com&quot;}
+{&quot;level&quot;:&quot;info&quot;,&quot;ts&quot;:1572160757.3755069,&quot;msg&quot;:&quot;Success! statusCode = 200 OK for URL http://www.baidu.com&quot;}</code></pre><h3 id="2-4-2-将-JSON-Encoder-更改为普通的-Log-Encoder"><a href="#2-4-2-将-JSON-Encoder-更改为普通的-Log-Encoder" class="headerlink" title="2.4.2 将 JSON Encoder 更改为普通的 Log Encoder"></a>2.4.2 将 JSON Encoder 更改为普通的 Log Encoder</h3><p>现在，我们希望将编码器从 JSON Encoder 更改为普通 Encoder。为此，我们需要将<code>NewJSONEncoder()</code>更改为<code>NewConsoleEncoder()</code>。</p>
+<pre><code class="go">return zapcore.NewConsoleEncoder(zap.NewProductionEncoderConfig())</code></pre>
+<p>当使用这些修改过的 logger 配置调用上述部分的<code>main()</code>函数时，以下输出将打印在文件——<code>test.log</code>中。</p>
+<pre><code class="go">1.572161051846623e+09    debug    Trying to hit GET request for www.baidu.com
+1.572161051846828e+09    error    Error fetching URL www.sogo.com : Error = Get www.baidu.com: unsupported protocol scheme &quot;&quot;
+1.5721610518468401e+09    debug    Trying to hit GET request for http://www.baidu.com
+1.572161052068744e+09    info    Success! statusCode = 200 OK for URL http://www.baidu.com</code></pre>
+<h3 id="2-4-3-更改时间编码并添加调用者详细信息"><a href="#2-4-3-更改时间编码并添加调用者详细信息" class="headerlink" title="2.4.3 更改时间编码并添加调用者详细信息"></a>2.4.3 更改时间编码并添加调用者详细信息</h3><p>鉴于我们对配置所做的更改，有下面两个问题：</p>
+<ul>
+<li>时间是以非人类可读的方式展示，例如 1.572161051846623e+09</li>
+<li>调用方函数的详细信息没有显示在日志中</li>
+</ul>
+<p>我们要做的第一件事是覆盖默认的<code>ProductionConfig()</code>，并进行以下更改:</p>
+<ul>
+<li>修改时间编码器</li>
+<li>在日志文件中使用大写字母记录日志级别<pre><code class="go">func getEncoder() zapcore.Encoder {
+  encoderConfig := zap.NewProductionEncoderConfig()
+  encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+  encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
+  return zapcore.NewConsoleEncoder(encoderConfig)
+}</code></pre>
+</li>
+</ul>
+<p>接下来，我们将修改 zap logger 代码，添加将调用函数信息记录到日志中的功能。为此，我们将在<code>zap.New(..)</code>函数中添加一个<code>Option</code>。</p>
+<pre><code class="go">logger := zap.New(core, zap.AddCaller())</code></pre>
+<p>当使用这些修改过的 logger 配置调用上述部分的<code>main()</code>函数时，以下输出将打印在文件——<code>test.log</code>中。</p>
+<pre><code>2019-10-27T15:33:29.855+0800    DEBUG    logic/temp2.go:47    Trying to hit GET request for www.baidu.com
+2019-10-27T15:33:29.855+0800    ERROR    logic/temp2.go:50    Error fetching URL www.sogo.com : Error = Get www.baidu.com: unsupported protocol scheme &quot;&quot;
+2019-10-27T15:33:29.856+0800    DEBUG    logic/temp2.go:47    Trying to hit GET request for http://www.baidu.com
+2019-10-27T15:33:30.125+0800    INFO    logic/temp2.go:52    Success! statusCode = 200 OK for URL http://www.baidu.com</code></pre><h1 id="3、使用-Lumberjack-进行日志切割归档"><a href="#3、使用-Lumberjack-进行日志切割归档" class="headerlink" title="3、使用 Lumberjack 进行日志切割归档"></a>3、使用 Lumberjack 进行日志切割归档</h1><p>_Zap 本身不支持切割归档日志文件，_为了添加日志切割归档功能，我们将使用第三方库 <a href="https://github.com/natefinch/lumberjack" target="_blank" rel="noopener">Lumberjack</a> 来实现。</p>
+<h2 id="3-1-安装"><a href="#3-1-安装" class="headerlink" title="3.1 安装"></a>3.1 安装</h2><p>执行下面的命令安装 Lumberjack</p>
+<pre><code>go get -u github.com/natefinch/lumberjack</code></pre><h2 id="3-2-zap-logger中加入Lumberjack"><a href="#3-2-zap-logger中加入Lumberjack" class="headerlink" title="3.2 zap logger中加入Lumberjack"></a>3.2 zap logger中加入Lumberjack</h2><p>要在 zap 中加入 Lumberjack 支持，我们需要修改<code>WriteSyncer</code>代码。我们将按照下面的代码修改<code>getLogWriter()</code>函数：</p>
+<pre><code class="go">func getLogWriter() zapcore.WriteSyncer {
+    lumberJackLogger := &amp;lumberjack.Logger{
+        Filename:   &quot;./test.log&quot;,
+        MaxSize:    10,
+        MaxBackups: 5,
+        MaxAge:     30,
+        Compress:   false,
+    }
+    return zapcore.AddSync(lumberJackLogger)
+}</code></pre>
+<p>Lumberjack Logger 采用以下属性作为输入:</p>
+<ul>
+<li>Filename: 日志文件的位置</li>
+<li>MaxSize：在进行切割之前，日志文件的最大大小（以 MB 为单位）</li>
+<li>MaxBackups：保留旧文件的最大个数</li>
+<li>MaxAges：保留旧文件的最大天数</li>
+<li>Compress：是否压缩 / 归档旧文件<h2 id="3-3-测试"><a href="#3-3-测试" class="headerlink" title="3.3 测试"></a>3.3 测试</h2>最终，使用 Zap/Lumberjack logger 的完整示例代码如下：</li>
+</ul>
+<pre><code class="go">package main
+
+import (
+    &quot;net/http&quot;
+
+    &quot;github.com/natefinch/lumberjack&quot;
+    &quot;go.uber.org/zap&quot;
+    &quot;go.uber.org/zap/zapcore&quot;
+)
+
+var sugarLogger *zap.SugaredLogger
+
+func main() {
+    InitLogger()
+    defer sugarLogger.Sync()
+    simpleHttpGet(&quot;www.sogo.com&quot;)
+    simpleHttpGet(&quot;http://www.sogo.com&quot;)
+}
+
+func InitLogger() {
+    writeSyncer := getLogWriter()
+    encoder := getEncoder()
+    core := zapcore.NewCore(encoder, writeSyncer, zapcore.DebugLevel)
+
+    logger := zap.New(core, zap.AddCaller())
+    sugarLogger = logger.Sugar()
+}
+
+func getEncoder() zapcore.Encoder {
+    encoderConfig := zap.NewProductionEncoderConfig()
+    encoderConfig.EncodeTime = zapcore.ISO8601TimeEncoder
+    encoderConfig.EncodeLevel = zapcore.CapitalLevelEncoder
+    return zapcore.NewConsoleEncoder(encoderConfig)
+}
+
+func getLogWriter() zapcore.WriteSyncer {
+    lumberJackLogger := &amp;lumberjack.Logger{
+        Filename:   &quot;./test.log&quot;,
+        MaxSize:    1,
+        MaxBackups: 5,
+        MaxAge:     30,
+        Compress:   false,
+    }
+    return zapcore.AddSync(lumberJackLogger)
+}
+
+func simpleHttpGet(url string) {
+    sugarLogger.Debugf(&quot;Trying to hit GET request for %s&quot;, url)
+    resp, err := http.Get(url)
+    if err != nil {
+        sugarLogger.Errorf(&quot;Error fetching URL %s : Error = %s&quot;, url, err)
+    } else {
+        sugarLogger.Infof(&quot;Success! statusCode = %s for URL %s&quot;, resp.Status, url)
+        resp.Body.Close()
+    }
+}</code></pre>
+<p>执行上述代码，下面的内容会输出到文件——test.log 中。</p>
+<pre><code>2019-10-27T15:50:32.944+0800    DEBUG    logic/temp2.go:48    Trying to hit GET request for www.sogo.com
+2019-10-27T15:50:32.944+0800    ERROR    logic/temp2.go:51    Error fetching URL www.sogo.com : Error = Get www.sogo.com: unsupported protocol scheme &quot;&quot;
+2019-10-27T15:50:32.944+0800    DEBUG    logic/temp2.go:48    Trying to hit GET request for http://www.sogo.com
+2019-10-27T15:50:33.165+0800    INFO    logic/temp2.go:53    Success! statusCode = 200 OK for URL http://www.sogo.com</code></pre><p>同时，可以在<code>main</code>函数中循环记录日志，测试日志文件是否会自动切割和归档（日志文件每 1MB 会切割并且在当前目录下最多保存 5 个备份）。<br>​</p>
+<h1 id="4、使用rotatelogs实现日志文件处理"><a href="#4、使用rotatelogs实现日志文件处理" class="headerlink" title="4、使用rotatelogs实现日志文件处理"></a>4、使用rotatelogs实现日志文件处理</h1><h2 id="4-1-当前问题"><a href="#4-1-当前问题" class="headerlink" title="4.1 当前问题"></a>4.1 当前问题</h2><p>我们当前还存在着两个问题：</p>
+<ol>
+<li>生成的日志并未包含日期后缀，Lumberjack在备份时会包含</li>
+<li>所有级别的日志都写在一个文件中了，需要根据日志级别写入不同文件</li>
+</ol>
+<p>这里我写了一个基于zap + “github.com/lestrrat/go-file-rotatelogs” 工具的工具类，完成自动追加日期后缀，并将不同日志级别的日志写入不同的文件。效果如下：<br><img alt="image.png" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1636536668444-0231425e-4af9-422b-abc3-2ed8dcee7567.png" class="lazyload"></p>
+<h2 id="4-2-日志工具类："><a href="#4-2-日志工具类：" class="headerlink" title="4.2 日志工具类："></a>4.2 日志工具类：</h2><pre><code class="go">package zaplog
+
+import (
+    rotatelogs &quot;github.com/lestrrat/go-file-rotatelogs&quot;
+    &quot;go.uber.org/zap&quot;
+    &quot;go.uber.org/zap/zapcore&quot;
+    &quot;os&quot;
+    &quot;path/filepath&quot;
+    &quot;sync&quot;
+    &quot;time&quot;
+)
+
+type Options struct {
+    LogFileDir    string    //日志路径
+    AppName       string    // Filename是要写入日志的文件前缀
+    ErrorFileName string
+    WarnFileName  string
+    InfoFileName  string
+    DebugFileName string
+    MaxSize       int    // 一个文件多少Ｍ大于该数字开始切分文件
+    MaxBackups    int    // MaxBackups是要保留的最大旧日志文件数
+    MaxAge        int    // MaxAge是根据日期保留旧日志文件的最大天数
+    zap.Config
+}
+
+var (
+    logger                         *Logger
+    sp                             = string(filepath.Separator)
+    errWS, warnWS, infoWS, debugWS zapcore.WriteSyncer       // IO输出
+    debugConsoleWS                 = zapcore.Lock(os.Stdout) // 控制台标准输出
+    errorConsoleWS                 = zapcore.Lock(os.Stderr)
+)
+
+func init() {
+    logger = &amp;Logger{
+        Opts: &amp;Options{},
+    }
+}
+
+type Logger struct {
+    *zap.SugaredLogger
+    sync.RWMutex
+    Opts      *Options `json:&quot;opts&quot;`
+    zapConfig zap.Config
+    inited    bool
+}
+
+func initLogger(cf ...*Options) {
+    logger.Lock()
+    defer logger.Unlock()
+    if logger.inited {
+        logger.Info(&quot;[initLogger] logger Inited&quot;)
+        return
+    }
+    if len(cf) &gt; 0 {
+        logger.Opts = cf[0]
+    }
+    logger.loadCfg()
+    logger.init()
+    logger.Info(&quot;[initLogger] zap plugin initializing completed&quot;)
+    logger.inited = true
+}
+
+
+// GetLogger returns logger
+func GetLogger() (ret *Logger) {
+    return logger
+}
+
+func (l *Logger) init() {
+    l.setSyncers()
+    var err error
+    mylogger, err := l.zapConfig.Build(l.cores())
+    if err != nil {
+        panic(err)
+    }
+    l.SugaredLogger = mylogger.Sugar()
+    defer l.SugaredLogger.Sync()
+}
+
+func (l *Logger) loadCfg() {
+    if l.Opts.Development {
+        l.zapConfig = zap.NewDevelopmentConfig()
+        l.zapConfig.EncoderConfig.EncodeTime = timeEncoder
+    } else {
+        l.zapConfig = zap.NewProductionConfig()
+        l.zapConfig.EncoderConfig.EncodeTime = timeUnixNano
+    }
+    if l.Opts.OutputPaths == nil || len(l.Opts.OutputPaths) == 0 {
+        l.zapConfig.OutputPaths = []string{&quot;stdout&quot;}
+    }
+    if l.Opts.ErrorOutputPaths == nil || len(l.Opts.ErrorOutputPaths) == 0 {
+        l.zapConfig.OutputPaths = []string{&quot;stderr&quot;}
+    }
+    // 默认输出到程序运行目录的logs子目录
+    if l.Opts.LogFileDir == &quot;&quot; {
+        l.Opts.LogFileDir, _ = filepath.Abs(filepath.Dir(filepath.Join(&quot;.&quot;)))
+        l.Opts.LogFileDir += sp + &quot;logs&quot; + sp
+    }
+    if l.Opts.AppName == &quot;&quot; {
+        l.Opts.AppName = &quot;app&quot;
+    }
+    if l.Opts.ErrorFileName == &quot;&quot; {
+        l.Opts.ErrorFileName = &quot;error.log&quot;
+    }
+    if l.Opts.WarnFileName == &quot;&quot; {
+        l.Opts.WarnFileName = &quot;warn.log&quot;
+    }
+    if l.Opts.InfoFileName == &quot;&quot; {
+        l.Opts.InfoFileName = &quot;info.log&quot;
+    }
+    if l.Opts.DebugFileName == &quot;&quot; {
+        l.Opts.DebugFileName = &quot;debug.log&quot;
+    }
+    if l.Opts.MaxSize == 0 {
+        l.Opts.MaxSize = 100
+    }
+    if l.Opts.MaxBackups == 0 {
+        l.Opts.MaxBackups = 30
+    }
+    if l.Opts.MaxAge == 0 {
+        l.Opts.MaxAge = 30
+    }
+}
+
+func (l *Logger) setSyncers() {
+    f := func(fN string) zapcore.WriteSyncer {
+        //return zapcore.AddSync(&amp;lumberjack.Logger{
+        //    Filename:   logger.Opts.LogFileDir + sp + logger.Opts.AppName + &quot;-&quot; + fN,
+        //    MaxSize:    logger.Opts.MaxSize,
+        //    MaxBackups: logger.Opts.MaxBackups,
+        //    MaxAge:     logger.Opts.MaxAge,
+        //    Compress:   true,
+        //    LocalTime:  true,
+        //})
+        // 每小时一个文件
+        logf, _ := rotatelogs.New(l.Opts.LogFileDir + sp + l.Opts.AppName + &quot;-&quot; + fN +&quot;.%Y_%m%d_%H&quot;,
+            rotatelogs.WithLinkName(l.Opts.LogFileDir + sp + l.Opts.AppName + &quot;-&quot; + fN),
+            rotatelogs.WithMaxAge(30*24*time.Hour),
+            rotatelogs.WithRotationTime(time.Minute),
+        )
+        return zapcore.AddSync(logf)
+    }
+    errWS = f(l.Opts.ErrorFileName)
+    warnWS = f(l.Opts.WarnFileName)
+    infoWS = f(l.Opts.InfoFileName)
+    debugWS = f(l.Opts.DebugFileName)
+    return
+}
+
+func (l *Logger) cores() zap.Option {
+    fileEncoder := zapcore.NewJSONEncoder(l.zapConfig.EncoderConfig)
+    //consoleEncoder := zapcore.NewConsoleEncoder(logger.zapConfig.EncoderConfig)
+    encoderConfig := zap.NewDevelopmentEncoderConfig()
+    encoderConfig.EncodeTime = timeEncoder
+    consoleEncoder := zapcore.NewConsoleEncoder(encoderConfig)
+
+    errPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+        return lvl &gt; zapcore.WarnLevel &amp;&amp; zapcore.WarnLevel-l.zapConfig.Level.Level() &gt; -1
+    })
+    warnPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+        return lvl == zapcore.WarnLevel &amp;&amp; zapcore.WarnLevel-l.zapConfig.Level.Level() &gt; -1
+    })
+    infoPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+        return lvl == zapcore.InfoLevel &amp;&amp; zapcore.InfoLevel-l.zapConfig.Level.Level() &gt; -1
+    })
+    debugPriority := zap.LevelEnablerFunc(func(lvl zapcore.Level) bool {
+        return lvl == zapcore.DebugLevel &amp;&amp; zapcore.DebugLevel-l.zapConfig.Level.Level() &gt; -1
+    })
+    cores := []zapcore.Core{
+        zapcore.NewCore(fileEncoder, errWS, errPriority),
+        zapcore.NewCore(fileEncoder, warnWS, warnPriority),
+        zapcore.NewCore(fileEncoder, infoWS, infoPriority),
+        zapcore.NewCore(fileEncoder, debugWS, debugPriority),
+    }
+    if l.Opts.Development {
+        cores = append(cores, []zapcore.Core{
+            zapcore.NewCore(consoleEncoder, errorConsoleWS, errPriority),
+            zapcore.NewCore(consoleEncoder, debugConsoleWS, warnPriority),
+            zapcore.NewCore(consoleEncoder, debugConsoleWS, infoPriority),
+            zapcore.NewCore(consoleEncoder, debugConsoleWS, debugPriority),
+        }...)
+    }
+    return zap.WrapCore(func(c zapcore.Core) zapcore.Core {
+        return zapcore.NewTee(cores...)
+    })
+}
+func timeEncoder(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
+    enc.AppendString(t.Format(&quot;2006-01-02 15:04:05&quot;))
+}
+
+func timeUnixNano(t time.Time, enc zapcore.PrimitiveArrayEncoder) {
+    enc.AppendInt64(t.UnixNano() / 1e6)
+}
+</code></pre>
+<h2 id="4-3-测试"><a href="#4-3-测试" class="headerlink" title="4.3 测试"></a>4.3 测试</h2><pre><code class="go">package zaplog
+
+import (
+    &quot;fmt&quot;
+    &quot;go.uber.org/zap&quot;
+    &quot;testing&quot;
+    &quot;time&quot;
+)
+
+func TestZapLog(t *testing.T) {
+    data := &amp;Options{
+        LogFileDir: &quot;/Users/didi/code/golang/learn-go/zap_log/v3/logs&quot;,
+        AppName:    &quot;logtool&quot;,
+        MaxSize:    30,
+        MaxBackups: 7,
+        MaxAge:     7,
+        Config:     zap.Config{},
+    }
+    data.Development = true
+    initLogger(data)
+    for i := 0; i &lt; 2; i++ {
+        time.Sleep(time.Second)
+        logger.Debug(fmt.Sprint(&quot;debug log &quot;, i), zap.Int(&quot;line&quot;, 999))
+        logger.Info(fmt.Sprint(&quot;Info log &quot;, i), zap.Any(&quot;level&quot;, &quot;1231231231&quot;))
+        logger.Warn(fmt.Sprint(&quot;warn log &quot;, i), zap.String(&quot;level&quot;, `{&quot;a&quot;:&quot;4&quot;,&quot;b&quot;:&quot;5&quot;}`))
+        logger.Error(fmt.Sprint(&quot;err log &quot;, i), zap.String(&quot;level&quot;, `{&quot;a&quot;:&quot;7&quot;,&quot;b&quot;:&quot;8&quot;}`))
+    }
+}
+</code></pre>
+<p>至此，我们总结了如何将 Zap 日志程序集成到 Go 应用程序项目中。现在整个golang的日志体系就比较完备了，唯一欠缺一点的就是日志中未接入trace，不能形成完整的日志链路追踪，后续我会在zap结合gin框架使用一文中将此功能分享出来。我们下期见，Peace😘</p>
+<blockquote>
+<p>我是简凡，一个励志用最简单的语言，描述最复杂问题的新时代农民工。<strong>求点赞，求关注</strong>，如果你对此篇文章有什么疑惑，欢迎在我的微信公众号中留言，我还可以为你提供以下帮助：</p>
+<ul>
+<li>帮助建立自己的知识体系</li>
+<li>互联网真实高并发场景实战讲解</li>
+<li>不定期分享Golang、Java相关业内的经典场景实践</li>
+</ul>
+<p>我的博客：<a href="https://besthpt.github.io/" target="_blank" rel="noopener">https://besthpt.github.io/</a><br>我的微信：bestbear666<br>微信公众号：<br><img alt="image.png" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1633094381436-599e5e08-34bf-4d7a-88fb-e9a4b30ebea3.png" class="lazyload"></p>
+</blockquote>
+<blockquote>
+<p>参考文档：<a href="https://liwenzhou.com/posts/Go/zap/" target="_blank" rel="noopener">https://liwenzhou.com/posts/Go/zap/</a></p>
+</blockquote>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">简凡丶</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://yoursite.com/2021/11/19/10.Golang/Zap%20%E6%97%A5%E5%BF%97%E5%BA%93%E5%AE%9E%E8%B7%B5/">http://yoursite.com/2021/11/19/10.Golang/Zap%20%E6%97%A5%E5%BF%97%E5%BA%93%E5%AE%9E%E8%B7%B5/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://yoursite.com">BestBear</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/Golang/">Golang    </a></div><div class="post_share"><div class="social-share" data-image="https://codebear-images.oss-cn-beijing.aliyuncs.com/{F8913C99-633F-3853-A3EE-D82950B5ED74}.jpg" data-sites="wechat,weibo,qq,facebook,twitter"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js"></script></div></div><nav class="pagination_post" id="pagination"><div class="next-post pull-full"><a href="/2021/11/17/10.Golang/Golang%E6%97%A5%E5%BF%97%E5%85%A5%E9%97%A8%E4%B8%8E%E6%8A%80%E6%9C%AF%E9%80%89%E5%9E%8B%20(1)/"><img class="next_cover lazyload" data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png" onerror="onerror=null;src='/img/404.jpg'"><div class="label">下一篇</div><div class="next_info"><span>Golang日志入门与技术选型</span></div></a></div></nav><div class="relatedPosts"><div class="relatedPosts_headline"><i class="fa fa-fw fa-thumbs-up" aria-hidden="true"></i><span> 相关推荐</span></div><div class="relatedPosts_list"><div class="relatedPosts_item"><a href="/2021/10/29/10.Golang/如何进行golang性能优化/" title="《一文教会你如何进行Golang服务优化》"><img class="relatedPosts_cover lazyload"data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/golang.jpeg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-10-29</div><div class="relatedPosts_title">《一文教会你如何进行Golang服务优化》</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/05/10.Golang/最佳实践之Golang错误处理/" title="最佳实践之Golang错误处理"><img class="relatedPosts_cover lazyload"data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/src=http___i2.wp.com_techlogitic.net_wp-content_uploads_2017_05_error-924-1.jpg_fit=950,500&ssl=1&refer=http___i2.wp.jpg"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-11-05</div><div class="relatedPosts_title">最佳实践之Golang错误处理</div></div></a></div><div class="relatedPosts_item"><a href="/2021/11/17/10.Golang/Golang日志入门与技术选型 (1)/" title="Golang日志入门与技术选型"><img class="relatedPosts_cover lazyload"data-src="https://codebear-images.oss-cn-beijing.aliyuncs.com/1c862b80-fca1-11e9-9d17-06c540ba1f1b.png"><div class="relatedPosts_main is-center"><div class="relatedPosts_date"><i class="fa fa-calendar fa-fw" aria-hidden="true"></i> 2021-11-17</div><div class="relatedPosts_title">Golang日志入门与技术选型</div></div></a></div></div><div class="clear_both"></div></div><hr><div id="post-comment"><div class="comment_headling"><i class="fa fa-comments fa-fw" aria-hidden="true"></i><span> 评论</span></div><div class="vcomment" id="vcomment"></div><script src="https://cdn.jsdelivr.net/npm/valine/dist/Valine.min.js"></script><script>var notify = false == true ? true : false;
+var verify = false == true ? true : false;
+var GUEST_INFO = ['nick','mail','link'];
+var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+  return GUEST_INFO.indexOf(item) > -1
+});
+guest_info = guest_info.length == 0 ? GUEST_INFO :guest_info;
+
+window.valine = new Valine({
+  el:'#vcomment',
+  notify:notify,
+  verify:verify,
+  appId:'POlJROSsMvr6BdUPhPaqFdlj-gzGzoHsz',
+  appKey:'JhPOeqEkpBUGVUNuYYxRCvUt',
+  placeholder:'Please leave your footprints',
+  avatar:'monsterid',
+  guest_info:guest_info,
+  pageSize:'10',
+  lang:'zh-cn',
+  recordIP: true
+});</script></div></div></main><footer id="footer" style="background-image: url(https://codebear-images.oss-cn-beijing.aliyuncs.com/{F8913C99-633F-3853-A3EE-D82950B5ED74}.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By 简凡丶</div><div class="framework-info"><span>驱动 </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>主题 </span><a href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"><span>Butterfly</span></a></div></div></footer></div><section class="rightside" id="rightside"><div id="rightside-config-hide"><i class="fa fa-book" id="readmode" title="阅读模式"></i><i class="fa fa-plus" id="font_plus" title="放大字体"></i><i class="fa fa-minus" id="font_minus" title="缩小字体"></i><a class="translate_chn_to_cht" id="translateLink" href="javascript:translatePage();" title="简繁转换" target="_self">繁</a><i class="darkmode fa fa-moon-o" id="darkmode" title="夜间模式"></i></div><div id="rightside-config-show"><div id="rightside_config" title="设置"><i class="fa fa-cog" aria-hidden="true"></i></div><a id="to_comment" href="#post-comment" title="直达评论"><i class="scroll_to_comment fa fa-comments">  </i></a><i class="fa fa-list-ul close" id="mobile-toc-button" title="目录" aria-hidden="true"></i><i class="fa fa-arrow-up" id="go-up" title="回到顶部" aria-hidden="true"></i></div></section><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/medium-zoom/dist/medium-zoom.min.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><script id="canvas_nest" color="0,0,255" opacity="0.7" zIndex="-1" count="99" mobile="false" src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/canvas-nest.js"></script><script src="https://cdn.jsdelivr.net/npm/activate-power-mode/dist/activate-power-mode.min.js"></script><script>POWERMODE.colorful = true;
+POWERMODE.shake = false; 
+document.body.addEventListener('input', POWERMODE);
+</script><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page@latest/instantpage.min.js" type="module"></script><script src="https://cdn.jsdelivr.net/npm/lazysizes@latest/lazysizes.min.js" async=""></script><script src="https://cdn.jsdelivr.net/gh/jerryc127/butterfly_cdn@2.1.0/js/click_heart.js"></script><div class="search-dialog" id="local-search"><div class="search-dialog__title" id="local-search-title">本地搜索</div><div id="local-input-panel"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章"></div></div></div><hr><div id="local-search-results"><div id="local-hits"></div><div id="local-stats"><div class="local-search-stats__hr" id="hr"><span>由</span> <a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener" style="color:#49B1F5;">hexo-generator-search</a>
+ <span>提供支持</span></div></div></div><span class="search-close-button"><i class="fa fa-times"></i></span></div><div class="search-mask"></div><script src="/live2d_models/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2d_models/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.5,"jsonPath":"/live2d_models/assets/tororo.model.json"},"display":{"superSample":2,"width":200,"height":200,"position":"right","hOffset":30,"vOffset":20},"mobile":{"show":false,"scale":0.05},"react":{"opacityDefault":0.6,"opacityOnHover":0.2},"log":false});</script></body></html>
